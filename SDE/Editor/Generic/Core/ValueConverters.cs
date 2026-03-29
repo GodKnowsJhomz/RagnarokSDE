@@ -61,7 +61,8 @@ namespace SDE.Editor.Generic.Core {
 		public static IValueConverter GetNoHexJobSetHexJob = new ApplicableJobConverter();
 		public static IValueConverter GetHexToIntSetInt = new HexToIntConverter();
 		public static IValueConverter GetBooleanSetRefinableString = new RefineableConverter();
-		public static IValueConverter GetSetResourceString = new ItemCdeResourceConverter();
+        public static IValueConverter GetBooleanSetGradableString = new RefineableConverter();
+        public static IValueConverter GetSetResourceString = new ItemCdeResourceConverter();
 		public static IValueConverter GetSetUniversalString = new ItemCdeUniversalConverter();
 		public static IValueConverter GetSetDisplayString = new ItemCdeDisplayConverter();
 		public static IValueConverter GetSetDescriptionString = new ItemCdeDescriptionConverter();

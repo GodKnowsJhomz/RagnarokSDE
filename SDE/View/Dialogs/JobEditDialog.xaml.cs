@@ -50,8 +50,8 @@ namespace SDE.View.Dialogs {
 			_addJob(_jobGrid1, JobList.Novice);
 			_addJob(_jobGrid1, JobList.SuperNovice);
 			_addJob(_jobGrid1, JobList.Summoner);
-			_addJob(_jobGrid1, null);
-			_addJob(_jobGrid1, null);
+            _addJob(_jobGrid1, JobList.SpiritHandler);
+            _addJob(_jobGrid1, null);
 			_addJob(_jobGrid1, null);
 			_addJob(_jobGrid1, null);
 			_addJob(_jobGrid1, null);
@@ -166,8 +166,10 @@ namespace SDE.View.Dialogs {
 
 			if (SdeAppConfiguration.RestrictToAllowedJobs) {
 				_restrict(0, _jobGrid1, JobList.Novice.Id, group);
+                _restrict(2, _jobGrid1, JobList.Summoner.Id, group);
+                _restrict(3, _jobGrid1, JobList.SpiritHandler.Id, group);
 
-				_restrict(0, _jobGrid2, JobList.Swordman.Id, group);
+                _restrict(0, _jobGrid2, JobList.Swordman.Id, group);
 				_restrict(1, _jobGrid2, JobList.Acolyte.Id, group);
 				_restrict(2, _jobGrid2, JobList.Mage.Id, group);
 				_restrict(3, _jobGrid2, JobList.Archer.Id, group);

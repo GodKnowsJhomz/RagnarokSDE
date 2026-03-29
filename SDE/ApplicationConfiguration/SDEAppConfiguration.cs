@@ -8,7 +8,7 @@ using System.Windows.Media;
 using ErrorManager;
 using GRF.IO;
 using GRF.Image;
-using GRF.System;
+using GRF.GrfSystem;
 using GrfToWpfBridge;
 using ICSharpCode.AvalonEdit;
 using TokeiLibrary;
@@ -61,11 +61,11 @@ namespace SDE.ApplicationConfiguration {
 		#region Program's configuration and information
 
 		public static string PublicVersion {
-			get { return "1.2.1.3"; }
+			get { return "1.3.0.0"; }
 		}
 
 		public static string Author {
-			get { return "Tokeiburu"; }
+			get { return "Tokeiburu(Updated by Richard)"; }
 		}
 
 		public static string ProgramName {

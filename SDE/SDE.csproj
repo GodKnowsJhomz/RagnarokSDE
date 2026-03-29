@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SDE</RootNamespace>
     <AssemblyName>SDE</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -154,6 +154,8 @@
     <Compile Include="Editor\Engines\RepairEngine\ValidationErrors.cs" />
     <Compile Include="Editor\Engines\ScriptInterpreter.cs" />
     <Compile Include="Editor\Generic\Parsers\DbIOCastle.cs" />
+    <Compile Include="Editor\Generic\Parsers\DbIOCombos.cs" />
+    <Compile Include="Editor\Generic\Parsers\DbIOHomuns.cs" />
     <Compile Include="Editor\Generic\Parsers\Generic\Constants.cs" />
     <Compile Include="Editor\Generic\Parsers\DbIOPet.cs" />
     <Compile Include="Editor\Generic\Parsers\DbIOCheevo.cs" />
@@ -934,12 +936,12 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" />
+      <UserProperties BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" />
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
-    <PreBuildEvent>cd "$(SolutionDir)SDE\Files\"
-start _Compress.bat</PreBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

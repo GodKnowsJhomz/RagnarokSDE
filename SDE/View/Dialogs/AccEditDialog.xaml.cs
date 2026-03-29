@@ -11,7 +11,7 @@ using ErrorManager;
 using GRF.Core.GroupedGrf;
 using GRF.FileFormats.LubFormat;
 using GRF.IO;
-using GRF.System;
+using GRF.GrfSystem;
 using GRF.Threading;
 using GrfToWpfBridge.Application;
 using Lua;

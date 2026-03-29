@@ -9,7 +9,7 @@ using ErrorManager;
 using GRF.Core.GroupedGrf;
 using GRF.FileFormats.LubFormat;
 using GRF.IO;
-using GRF.System;
+using GRF.GrfSystem;
 using Lua;
 using SDE.ApplicationConfiguration;
 using SDE.Editor.Engines.BackupsEngine;

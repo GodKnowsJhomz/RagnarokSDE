@@ -239,7 +239,12 @@ namespace SDE.Editor.Generic.Lists {
 		[Description("Cash")] UsableWithDelayed2 = 18,
 	}
 
-	public enum GenderType {
+    [Description("Card edit")]
+    public enum CardType
+    {
+    }
+
+    public enum GenderType {
 		Female,
 		Male,
 		Both,
@@ -501,12 +506,13 @@ namespace SDE.Editor.Generic.Lists {
 	[Description("Upper edit#disable_tooltips")]
 	public enum UpperType {
 		[Description("1 - Normal")] En0 = 1 << 0,
-		[Description("2 - Reborn/Trans. Classes (excl. Trans-3rd classes)")] En1 = 1 << 1,
-		[Description("4 - Baby Classes (excl. 3rd Baby Classes)")] En2 = 1 << 2,
-		[Description("8 - 3rd Classes (excl. Trans-3rd classes and 3rd Baby classes)")] En3 = 1 << 3,
-		[Description("16 - Trans-3rd Classes")] En4 = 1 << 4,
-		[Description("32 - Baby 3rd Classes")] En5 = 1 << 5,
-	}
+		[Description("2 - Reborn/Trans. Classes (excl. Trans-3rd classes)")] En1 = 1 << 1,             // 1 0x1
+		[Description("4 - Baby Classes (excl. 3rd Baby Classes)")] En2 = 1 << 2,                       // 4 0x2
+		[Description("8 - 3rd Classes (excl. Trans-3rd classes and 3rd Baby classes)")] En3 = 1 << 3,  // 8 0x8
+		[Description("16 - Trans-3rd Classes")] En4 = 1 << 4, // 16   0x10
+		[Description("32 - Baby 3rd Classes")] En5 = 1 << 5,  // 32   0x20
+        [Description("64 - 4th Classes")] En6 = 1 << 6,       // 64   0x40
+    }
 
 	[Flags]
 	[Description("Mode edit")]

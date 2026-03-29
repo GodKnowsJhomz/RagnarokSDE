@@ -1,7 +1,7 @@
 using System.IO;
 using System.Windows.Controls;
 using Database;
-using GRF.System;
+using GRF.GrfSystem;
 using SDE.Editor.Engines.DatabaseEngine;
 using SDE.Editor.Generic.Parsers.Generic;
 using SDE.Editor.Generic.TabsMakerCore;

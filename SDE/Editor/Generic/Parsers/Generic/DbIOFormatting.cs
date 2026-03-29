@@ -96,7 +96,7 @@ namespace SDE.Editor.Generic.Parsers.Generic {
 		public static void TrySetIfDefaultEmptyUpper(ReadableTuple<int> tuple, StringBuilder builder, DbAttribute attribute) {
 			string val = tuple.GetValue<string>(attribute);
 
-			if (val != "" && val != "7" && val != "63") {
+			if (val != "" && val != "7" && val != "127") {
 				builder.Append("\t");
 				builder.Append(attribute.AttributeName);
 				builder.Append(": ");

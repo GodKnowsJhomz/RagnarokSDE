@@ -134,6 +134,10 @@ Kunai	auto
 Cannonball	auto
 Throwweapon	auto
 
+[CardType]
+Normal	0
+Enchant	auto
+
 [UnitTargetType]
 None	0
 Self	0x010000

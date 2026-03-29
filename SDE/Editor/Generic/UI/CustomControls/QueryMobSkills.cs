@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using Database;
 using ErrorManager;
-using GRF.System;
+using GRF.GrfSystem;
 using SDE.Editor.Engines.DatabaseEngine;
 using SDE.Editor.Engines.TabNavigationEngine;
 using SDE.Editor.Generic.Core;

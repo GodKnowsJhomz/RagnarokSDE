@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using Database;
-using GRF.System;
+using GRF.GrfSystem;
 using SDE.Editor.Engines;
 using SDE.Editor.Engines.Parsers;
 using SDE.Editor.Generic.Core;
