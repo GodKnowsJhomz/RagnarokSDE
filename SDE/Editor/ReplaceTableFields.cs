@@ -94,9 +94,9 @@ namespace SDE.Editor {
 				box.Tag = attribute;
 				box.SetValue(Grid.RowProperty, index / gridCopy.ColumnDefinitions.Count + 1);
 				box.SetValue(Grid.ColumnProperty, index % gridCopy.ColumnDefinitions.Count);
-				WpfUtils.AddMouseInOutEffectsBox(box);
+                WpfUtilities.AddMouseInOutUnderline(box);
 
-				gridCopy.Children.Add(box);
+                gridCopy.Children.Add(box);
 				boxes.Add(box);
 				index++;
 			}

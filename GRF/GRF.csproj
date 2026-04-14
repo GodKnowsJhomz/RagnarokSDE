@@ -1,0 +1,71 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<NoWarn>$(NoWarn);1591</NoWarn>
+		<Platforms>AnyCPU;x64;x86</Platforms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Graphics\TkVector3 - Copy.cs" />
+    <Compile Remove="Image\GrfColor - Copy.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Files\comp_x64.dll" />
+    <Content Remove="Files\cps.dll" />
+    <Content Remove="Files\lzma.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Files\comp_x64.dll" />
+    <None Remove="Files\cps.dll" />
+    <None Remove="Files\lzma.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Files\comp_x64.dll" />
+    <EmbeddedResource Include="Files\cps.dll" />
+    <EmbeddedResource Include="Files\lzma.dll" />
+  </ItemGroup>
+	<PropertyGroup>
+		<ExternalDllsPath>$(SolutionDir)..\..\tktoolsuite\Libraries\</ExternalDllsPath>
+		<GrfEditorDllsPath>$(SolutionDir)Libraries\</GrfEditorDllsPath>
+	</PropertyGroup>
+	<ItemGroup Condition="Exists('$(ExternalDllsPath)')">
+		<ExternalDlls Include="$(ExternalDllsPath)ErrorManager.dll" Visible="false" />
+		<ExternalDlls Include="$(ExternalDllsPath)Encryption.dll" Visible="false" />
+	</ItemGroup>
+	<Target Name="CopyExternalDlls" BeforeTargets="BeforeBuild">
+		<MakeDir Directories="$(GrfEditorDllsPath)" Condition="!Exists('$(GrfEditorDllsPath)')" />
+		<Copy SourceFiles="@(ExternalDlls)" DestinationFolder="$(GrfEditorDllsPath)" SkipUnchangedFiles="true" Condition="Exists('$(ExternalDllsPath)')" />
+	</Target>
+	<Target Name="CopyBuildDll" BeforeTargets="AfterBuild">
+		<MakeDir Directories="$(GrfEditorDllsPath)" Condition="!Exists('$(GrfEditorDllsPath)')" />
+		<Message Text="$(ProjectName) -&gt; $([System.IO.Path]::GetFullPath('$(ExternalDllsPath)$(TargetFileName)'))" Importance="High" Condition="Exists('$(ExternalDllsPath)')" />
+		<Message Text="$(ProjectName) -&gt; $(GrfEditorDllsPath)$(TargetFileName)" Importance="High" Condition="Exists('$(GrfEditorDllsPath)')" />
+		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ExternalDllsPath)" SkipUnchangedFiles="true" Condition="Exists('$(ExternalDllsPath)')" />
+		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(GrfEditorDllsPath)" SkipUnchangedFiles="true" Condition="Exists('$(GrfEditorDllsPath)')" />
+		<Copy SourceFiles="$(TargetPath);$(TargetDir)$(TargetName).pdb" DestinationFolder="$(ExternalDllsPath)" SkipUnchangedFiles="true" Condition="Exists('$(ExternalDllsPath)')" />
+	</Target>
+	<ItemGroup>
+	  <ProjectReference Include="..\Utilities\Utilities.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Reference Include="Encryption">
+	    <HintPath>..\SDE\Files\Encryption.dll</HintPath>
+	  </Reference>
+	  <Reference Include="ErrorManager">
+	    <HintPath>..\SDE\Files\ErrorManager.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Files\comp_x64.dll" />
+    <Resource Include="Files\cps.dll" />
+    <Resource Include="Files\lzma.dll" />
+  </ItemGroup>
+
+</Project>

@@ -46,8 +46,8 @@ namespace SDE.View.Dialogs {
 
 			_destTable.ItemsSource = dbSources;
 			_destTable.SelectedIndex = 0;
-			
-			WpfUtils.AddMouseInOutEffects(_imReset);
+
+            WpfUtilities.AddMouseInOutHandEffect(_imReset);
 
 			this.Loaded += delegate {
 				_tbRange.Text = "1";

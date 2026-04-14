@@ -121,18 +121,18 @@ namespace SDE.View
             _clientDatabase.Commands.ModifiedStateChanged += new AbstractCommand<IGenericDbCommand>.AbstractCommandsEventHandler(_commands_ModifiedStateChanged);
 
             ApplicationShortcut.Link(ApplicationShortcut.Undo, () => _clientDatabase.Commands.Undo(), this);
-            ApplicationShortcut.Link(ApplicationShortcut.UndoGlobal, () => _clientDatabase.Commands.Undo(), this);
+            ApplicationShortcut.Link(ApplicationShortcut.FromString("Ctrl-Alt-Z", "Application.UndoGlobal"), () => _clientDatabase.Commands.Undo(), this);
             ApplicationShortcut.Link(ApplicationShortcut.Redo, () => _clientDatabase.Commands.Redo(), this);
-            ApplicationShortcut.Link(ApplicationShortcut.RedoGlobal, () => _clientDatabase.Commands.Redo(), this);
+            ApplicationShortcut.Link(ApplicationShortcut.FromString("Ctrl-Alt-Y", "Application.RedoGlobal"), () => _clientDatabase.Commands.Redo(), this);
             ApplicationShortcut.Link(ApplicationShortcut.Search, () => _execute(v => v.Search()), this);
             ApplicationShortcut.Link(ApplicationShortcut.Delete, () => _execute(v => v.DeleteItems()), this);
             ApplicationShortcut.Link(ApplicationShortcut.Rename, () => _execute(v => v.ChangeId()), this);
             ApplicationShortcut.Link(ApplicationShortcut.NavigationBackward, () => _tabEngine.Undo(), this);
-            ApplicationShortcut.Link(ApplicationShortcut.NavigationBackward2, () => _tabEngine.Redo(), this);
+            ApplicationShortcut.Link(ApplicationShortcut.FromString("Alt-X", "Application.NavigationBackward2"), () => _tabEngine.Redo(), this);
             ApplicationShortcut.Link(ApplicationShortcut.NavigationForward, () => _tabEngine.Redo(), this);
             ApplicationShortcut.Link(ApplicationShortcut.Change, () => _execute(v => v.ChangeId()), this);
             ApplicationShortcut.Link(ApplicationShortcut.Restrict, () => _execute(v => v.ShowSelectedOnly()), this);
-            ApplicationShortcut.Link(ApplicationShortcut.CopyTo, () => _execute(v => v.CopyItemTo()), this);
+            ApplicationShortcut.Link(ApplicationShortcut.FromString("Ctrl-Shift-D", "Application.CopyTo"), () => _execute(v => v.CopyItemTo()), this);
             ApplicationShortcut.Link(ApplicationShortcut.New, () => _execute(v => v.AddNewItem()), this);
             ApplicationShortcut.Link(ApplicationShortcut.Save, () => _menuItemDatabaseSave_Click(this, null), this);
             ApplicationShortcut.Link(ApplicationShortcut.Replace, () => { if (_menuItemReplaceAll.IsEnabled) _menuItemReplaceAll_Click(this, null); }, this);
@@ -155,7 +155,7 @@ namespace SDE.View
                 new ListViewDataTemplateHelper.GeneralColumnInfo { Header = "Line", DisplayExpression = "Line", SearchGetAccessor = "Line", FixedWidth = 40, TextAlignment = TextAlignment.Left, ToolTipBinding="Line" },
             }, null, new string[] { "Default", "{DynamicResource TextForeground}" });
 
-            ApplicationShortcut.Link(ApplicationShortcut.Copy, () => WpfUtils.CopyContent(_debugList), _debugList);
+            ApplicationShortcut.Link(ApplicationShortcut.Copy, () => ListViewExtensions.CopyContent(_debugList), _debugList);
 
             _debugItems = new ObservableCollection<DebugItemView>();
             _debugList.ItemsSource = _debugItems;
@@ -567,7 +567,7 @@ namespace SDE.View
 
                             if (mode == 0)
                             {
-                                image.MakePinkTransparent();
+                                image.MakePinkShadeTransparent();
                             }
 
                             image.Convert(GrfImageType.Bgra32);

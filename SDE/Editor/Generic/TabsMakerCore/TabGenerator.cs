@@ -236,7 +236,7 @@ namespace SDE.Editor.Generic.TabsMakerCore {
 				ImagePath = "export.png",
 				InsertIndex = 3,
 				AddToCommandsStack = false,
-				Shortcut = ApplicationShortcut.Copy,
+				Shortcut = ApplicationShortcut.Copy.Shortcut,
 				GenericCommand = delegate(List<ReadableTuple<TKey>> items) {
 					StringBuilder builder = new StringBuilder();
 					List<int> toRemove =

@@ -131,8 +131,7 @@ namespace SDE.View.Dialogs
         {
             try
             {
-                if (
-                    ApplicationShortcut.Is(ApplicationShortcut.FromString("Ctrl-Enter", null)))
+                if (new Shortcut("Ctrl-Enter").IsMatch())
                 {
                     e.Handled = true;
                     _buttonOk_Click(null, null);

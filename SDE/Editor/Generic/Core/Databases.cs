@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using Database;
 using ErrorManager;
@@ -96,8 +97,8 @@ namespace SDE.Editor.Generic.Core
 
                                 if (data != null)
                                 {
-                                    GrfImage gimage = new GrfImage(ref data);
-                                    gimage.MakePinkTransparent();
+                                    GrfImage gimage = new GrfImage(data);
+                                    gimage.MakePinkShadeTransparent();
 
                                     if (gimage.GrfImageType == GrfImageType.Bgr24)
                                     {
@@ -116,8 +117,8 @@ namespace SDE.Editor.Generic.Core
 
                                 if (data != null)
                                 {
-                                    GrfImage gimage = new GrfImage(ref data);
-                                    gimage.MakePinkTransparent();
+                                    GrfImage gimage = new GrfImage(data);
+                                    gimage.MakePinkShadeTransparent();
 
                                     if (gimage.GrfImageType == GrfImageType.Bgr24)
                                     {
@@ -144,7 +145,7 @@ namespace SDE.Editor.Generic.Core
                     DisplayName = "Copy to [" + ServerDbs.Items2.DisplayName + "]...",
                     ImagePath = "convert.png",
                     InsertIndex = 3,
-                    Shortcut = ApplicationShortcut.CopyTo2,
+                    Shortcut = new Shortcut(Key.C, ModifierKeys.Control | ModifierKeys.Shift),
                     AddToCommandsStack = false,
                     GenericCommand = tuple => tab.CopyItemTo(gdb.GetDb<int>(ServerDbs.Items2))
                 });
@@ -155,7 +156,7 @@ namespace SDE.Editor.Generic.Core
                     DisplayName = "Copy entries to clipboard (txt or yml)",
                     ImagePath = "export.png",
                     InsertIndex = 4,
-                    Shortcut = ApplicationShortcut.Copy,
+                    Shortcut = ApplicationShortcut.Copy.Shortcut,
                     AddToCommandsStack = false,
                     GenericCommand = delegate (List<ReadableTuple<int>> items) {
                         if (_format == 2)
@@ -197,7 +198,7 @@ namespace SDE.Editor.Generic.Core
                     DisplayName = "Copy entries to clipboard (conf)",
                     ImagePath = "export.png",
                     InsertIndex = 5,
-                    Shortcut = ApplicationShortcut.Copy2,
+                    Shortcut = new Shortcut(Key.C, ModifierKeys.Control | ModifierKeys.Shift),
                     AddToCommandsStack = false,
                     GenericCommand = delegate (List<ReadableTuple<int>> items) {
                         StringBuilder builder = new StringBuilder();
@@ -221,7 +222,7 @@ namespace SDE.Editor.Generic.Core
                 //});
 
                 var select = GTabsMaker.GenerateSelectFrom(ServerDbs.CItems, tab);
-                select.Shortcut = ApplicationShortcut.Select;
+                select.Shortcut = ApplicationShortcut.Select.Shortcut;
                 settings.AddedCommands.Add(select);
                 settings.AddedCommands.Last().InsertIndex = 6;
 
@@ -238,7 +239,7 @@ namespace SDE.Editor.Generic.Core
                     DisplayName = String.Format("Add in [{0}]", ServerDbs.CItems.DisplayName),
                     ImagePath = "add.png",
                     InsertIndex = 7,
-                    Shortcut = ApplicationShortcut.FromString("Ctrl-Alt-E", String.Format("Add in [{0}]", ServerDbs.CItems.DisplayName)),
+                    Shortcut = ApplicationShortcut.FromString("Ctrl-Alt-E", String.Format("Add in [{0}]", ServerDbs.CItems.DisplayName)).Shortcut,
                     AddToCommandsStack = false,
                     GenericCommand = delegate (List<ReadableTuple<int>> items) {
                         citemDb = tab.GetDb<int>(ServerDbs.CItems);
@@ -874,7 +875,7 @@ namespace SDE.Editor.Generic.Core
                     DisplayName = "Copy entries to clipboard (txt)",
                     ImagePath = "export.png",
                     InsertIndex = 4,
-                    Shortcut = ApplicationShortcut.Copy,
+                    Shortcut = ApplicationShortcut.Copy.Shortcut,
                     AddToCommandsStack = false,
                     GenericCommand = delegate (List<ReadableTuple<int>> items) {
                         if (_format == 1)
@@ -902,7 +903,7 @@ namespace SDE.Editor.Generic.Core
                     DisplayName = "Copy entries to clipboard (conf)",
                     ImagePath = "export.png",
                     InsertIndex = 5,
-                    Shortcut = ApplicationShortcut.Copy2,
+                    Shortcut = new Shortcut(Key.C, ModifierKeys.Control | ModifierKeys.Shift),
                     AddToCommandsStack = false,
                     GenericCommand = delegate (List<ReadableTuple<int>> items) {
                         StringBuilder builder = new StringBuilder();
@@ -960,7 +961,7 @@ namespace SDE.Editor.Generic.Core
                     DisplayName = "Import from Divine Pride3",
                     ImagePath = "imconvert.png",
                     InsertIndex = 5,
-                    Shortcut = ApplicationShortcut.FromString("Ctrl-H", "Autocomplete3"),
+                    Shortcut = ApplicationShortcut.FromString("Ctrl-H", "Autocomplete3").Shortcut,
                     AddToCommandsStack = true,
                     Command = delegate (ReadableTuple<int> item) {
                         try
@@ -984,7 +985,7 @@ namespace SDE.Editor.Generic.Core
                 DisplayName = "Copy to [" + ServerDbs.Mobs2.DisplayName + "]...",
                 ImagePath = "convert.png",
                 InsertIndex = 3,
-                Shortcut = ApplicationShortcut.CopyTo2,
+                Shortcut = new Shortcut(Key.C, ModifierKeys.Control | ModifierKeys.Shift),
                 AddToCommandsStack = false,
                 GenericCommand = tuple => tab.CopyItemTo(gdb.GetDb<int>(ServerDbs.Mobs2))
             });
@@ -1279,7 +1280,7 @@ namespace SDE.Editor.Generic.Core
                     DisplayName = "Copy to [" + ServerDbs.Pet2.DisplayName + "]...",
                     ImagePath = "convert.png",
                     InsertIndex = 3,
-                    Shortcut = ApplicationShortcut.CopyTo2,
+                    Shortcut = new Shortcut(Key.C, ModifierKeys.Control | ModifierKeys.Shift),
                     AddToCommandsStack = false,
                     GenericCommand = tuple => tab.CopyItemTo(GetDb<int>(ServerDbs.Pet2))
                 });
@@ -1290,7 +1291,7 @@ namespace SDE.Editor.Generic.Core
                     DisplayName = "Copy entries to clipboard (txt or yml)",
                     ImagePath = "export.png",
                     InsertIndex = 4,
-                    Shortcut = ApplicationShortcut.Copy,
+                    Shortcut = new Shortcut(Key.C, ModifierKeys.Control | ModifierKeys.Shift),
                     AddToCommandsStack = false,
                     GenericCommand = delegate (List<ReadableTuple<int>> items) {
                         if (_format == 1)
@@ -1458,7 +1459,7 @@ namespace SDE.Editor.Generic.Core
                     AllowMultipleSelection = true,
                     DisplayName = "Copy entries to clipboard (rAthena)",
                     ImagePath = "export.png",
-                    Shortcut = ApplicationShortcut.Copy,
+                    Shortcut = new Shortcut(Key.C, ModifierKeys.Control | ModifierKeys.Shift),
                     InsertIndex = 3,
                     AddToCommandsStack = false,
                     GenericCommand = items => GTabsMaker.ItemGroupCopyEntries(items, gdb, settings.Control, ServerType.RAthena)
@@ -1469,7 +1470,7 @@ namespace SDE.Editor.Generic.Core
                     AllowMultipleSelection = true,
                     DisplayName = "Copy entries to clipboard (Hercules)",
                     ImagePath = "export.png",
-                    Shortcut = ApplicationShortcut.Copy2,
+                    Shortcut = new Shortcut(Key.C, ModifierKeys.Control | ModifierKeys.Shift),
                     InsertIndex = 4,
                     AddToCommandsStack = false,
                     GenericCommand = items => GTabsMaker.ItemGroupCopyEntries(items, gdb, settings.Control, ServerType.Hercules)
@@ -1540,7 +1541,7 @@ namespace SDE.Editor.Generic.Core
                     DisplayName = "Copy entries to clipboard (txt)",
                     ImagePath = "export.png",
                     InsertIndex = 4,
-                    Shortcut = ApplicationShortcut.Copy,
+                    Shortcut = ApplicationShortcut.Copy.Shortcut,
                     AddToCommandsStack = false,
                     GenericCommand = delegate (List<ReadableTuple<string>> items) {
                         StringBuilder builder = new StringBuilder();
@@ -1566,7 +1567,7 @@ namespace SDE.Editor.Generic.Core
                     DisplayName = "Copy entries to clipboard (conf)",
                     ImagePath = "export.png",
                     InsertIndex = 5,
-                    Shortcut = ApplicationShortcut.Copy2,
+                    Shortcut = new Shortcut(Key.C, ModifierKeys.Control | ModifierKeys.Shift),
                     AddToCommandsStack = false,
                     GenericCommand = delegate (List<ReadableTuple<string>> items) {
                         StringBuilder builder = new StringBuilder();
@@ -1614,7 +1615,7 @@ namespace SDE.Editor.Generic.Core
                     DisplayName = "Copy to [" + ServerDbs.Homuns2.DisplayName + "]...",
                     ImagePath = "convert.png",
                     InsertIndex = 3,
-                    Shortcut = ApplicationShortcut.CopyTo2,
+                    Shortcut = new Shortcut(Key.D, ModifierKeys.Control | ModifierKeys.Alt),
                     AddToCommandsStack = false,
                     GenericCommand = tuple => tab.CopyItemTo(GetDb<int>(ServerDbs.Homuns2))
                 });
@@ -1683,7 +1684,7 @@ namespace SDE.Editor.Generic.Core
                     DisplayName = "Copy entries to clipboard (yml)",
                     ImagePath = "export.png",
                     InsertIndex = 4,
-                    Shortcut = ApplicationShortcut.Copy,
+                    Shortcut = ApplicationShortcut.Copy.Shortcut,
                     AddToCommandsStack = false,
                     GenericCommand = delegate (List<ReadableTuple<int>> items) {
                         var itemDb = GetMeta<int>(ServerDbs.Items);
@@ -1943,7 +1944,7 @@ namespace SDE.Editor.Generic.Core
                     DisplayName = "Copy to [" + ServerDbs.MobSkills2.DisplayName + "]...",
                     ImagePath = "convert.png",
                     InsertIndex = 3,
-                    Shortcut = ApplicationShortcut.CopyTo2,
+                    Shortcut = new Shortcut(Key.D, ModifierKeys.Control | ModifierKeys.Alt),
                     AddToCommandsStack = false,
                     GenericCommand = tuple => tab.CopyItemTo(GetDb<string>(ServerDbs.MobSkills2))
                 });
@@ -2072,7 +2073,7 @@ namespace SDE.Editor.Generic.Core
                     DisplayName = "Copy entries to clipboard (txt or yml)",
                     ImagePath = "export.png",
                     InsertIndex = 4,
-                    Shortcut = ApplicationShortcut.Copy,
+                    Shortcut = ApplicationShortcut.Copy.Shortcut,
                     AddToCommandsStack = false,
                     GenericCommand = delegate (List<ReadableTuple<int>> items) {
                         if (_format == 1)
@@ -2101,7 +2102,7 @@ namespace SDE.Editor.Generic.Core
                     DisplayName = "Copy entries to clipboard (conf)",
                     ImagePath = "export.png",
                     InsertIndex = 5,
-                    Shortcut = ApplicationShortcut.Copy2,
+                    Shortcut = new Shortcut(Key.C, ModifierKeys.Control | ModifierKeys.Shift),
                     AddToCommandsStack = false,
                     GenericCommand = delegate (List<ReadableTuple<int>> items) {
                         StringBuilder builder = new StringBuilder();
@@ -2234,7 +2235,7 @@ namespace SDE.Editor.Generic.Core
 
             TabGenerator.OnSetCustomCommands = delegate (GDbTabWrapper<int, ReadableTuple<int>> tab, GTabSettings<int, ReadableTuple<int>> settings, BaseDb gdb) {
                 var command = GTabsMaker.GenerateSelectFrom(ServerDbs.Cheevo, tab);
-                command.Shortcut = ApplicationShortcut.Select;
+                command.Shortcut = ApplicationShortcut.Select.Shortcut;
                 settings.AddedCommands.Add(command);
 
                 settings.AddedCommands.Add(new GItemCommand<int, ReadableTuple<int>>
@@ -2243,7 +2244,7 @@ namespace SDE.Editor.Generic.Core
                     DisplayName = "Copy entries to clipboard",
                     ImagePath = "export.png",
                     InsertIndex = 5,
-                    Shortcut = ApplicationShortcut.Copy,
+                    Shortcut = ApplicationShortcut.Copy.Shortcut,
                     AddToCommandsStack = false,
                     GenericCommand = delegate (List<ReadableTuple<int>> items) {
                         StringBuilder builder = new StringBuilder();
@@ -2264,7 +2265,7 @@ namespace SDE.Editor.Generic.Core
                     DisplayName = "Autocomplete (from Server data)",
                     ImagePath = "imconvert.png",
                     InsertIndex = 5,
-                    Shortcut = ApplicationShortcut.FromString("Ctrl-G", "Autocomplete"),
+                    Shortcut = ApplicationShortcut.FromString("Ctrl-G", "Autocomplete").Shortcut,
                     AddToCommandsStack = true,
                     Command = delegate (ReadableTuple<int> item) {
                         try
@@ -2387,7 +2388,7 @@ namespace SDE.Editor.Generic.Core
                     DisplayName = "Copy entries to clipboard (yml)",
                     ImagePath = "export.png",
                     InsertIndex = 4,
-                    Shortcut = ApplicationShortcut.Copy,
+                    Shortcut = ApplicationShortcut.Copy.Shortcut,
                     AddToCommandsStack = false,
                     GenericCommand = delegate (List<ReadableTuple<int>> items) {
                         StringBuilder builder = new StringBuilder();
@@ -2408,7 +2409,7 @@ namespace SDE.Editor.Generic.Core
                     DisplayName = "Copy entries to clipboard (conf)",
                     ImagePath = "export.png",
                     InsertIndex = 5,
-                    Shortcut = ApplicationShortcut.Copy2,
+                    Shortcut = new Shortcut(Key.C, ModifierKeys.Control | ModifierKeys.Shift),
                     AddToCommandsStack = false,
                     GenericCommand = delegate (List<ReadableTuple<int>> items) {
                         StringBuilder builder = new StringBuilder();
@@ -2429,7 +2430,7 @@ namespace SDE.Editor.Generic.Core
                     DisplayName = String.Format("Add in [{0}]", ServerDbs.CCheevo.DisplayName),
                     ImagePath = "add.png",
                     InsertIndex = 7,
-                    Shortcut = ApplicationShortcut.FromString("Ctrl-Alt-E", String.Format("Add in [{0}]", ServerDbs.CCheevo.DisplayName)),
+                    Shortcut = ApplicationShortcut.FromString("Ctrl-Alt-E", String.Format("Add in [{0}]", ServerDbs.CCheevo.DisplayName)).Shortcut,
                     AddToCommandsStack = false,
                     GenericCommand = delegate (List<ReadableTuple<int>> items) {
                         var cCheevoDb = tab.GetDb<int>(ServerDbs.CCheevo);
@@ -2463,7 +2464,7 @@ namespace SDE.Editor.Generic.Core
                 });
 
                 var command = GTabsMaker.GenerateSelectFrom(ServerDbs.CCheevo, tab);
-                command.Shortcut = ApplicationShortcut.Select;
+                command.Shortcut = ApplicationShortcut.Select.Shortcut;
                 settings.AddedCommands.Add(command);
             };
 

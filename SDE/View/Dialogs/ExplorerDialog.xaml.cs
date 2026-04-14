@@ -133,7 +133,7 @@ namespace SDE.View.Dialogs {
 					entries.Add(new FtpEntry { Name = file.getFilename(), Changed = file.getAttrs().getMtimeString(), Rights = file.getAttrs().getPermissionsString() });
 				}
 
-				if (_listViewResults.Dispatch(() => WpfUtils.GetLastSorted(_listViewResults)) == null) {
+				if (_listViewResults.Dispatch(() => ListViewExtensions.GetLastSorted(_listViewResults)) == null) {
 					entries = entries.OrderBy(p => p, _sorter).ToList();
 				}
 

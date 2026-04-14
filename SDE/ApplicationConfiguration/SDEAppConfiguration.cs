@@ -61,7 +61,7 @@ namespace SDE.ApplicationConfiguration {
 		#region Program's configuration and information
 
 		public static string PublicVersion {
-			get { return "1.3.1.0"; }
+			get { return "1.3.2.0"; }
 		}
 
 		public static string Author {
@@ -76,11 +76,15 @@ namespace SDE.ApplicationConfiguration {
 			get { return Assembly.GetEntryAssembly().GetName().Version.ToString(); }
 		}
 
-		#endregion
+        public static string BuildBitness {
+            get { return Environment.Is64BitProcess ? "64-bit" : "32-bit"; }
+        }
 
-		#region GRFEditor
+        #endregion
 
-		private static ObservableDictionary<string, string> _remapper;
+        #region GRFEditor
+
+        private static ObservableDictionary<string, string> _remapper;
 		private static readonly BufferedProperty<bool> _dbWriterItemInfoIdDisplayName = new BufferedProperty<bool>(ConfigAsker, "[Server database editor - Db Writer - ItemInfo id display name]", true, FormatConverters.BooleanConverter);
 		private static readonly BufferedProperty<bool> _dbWriterItemInfoUnDisplayName = new BufferedProperty<bool>(ConfigAsker, "[Server database editor - Db Writer - ItemInfo un display name]", true, FormatConverters.BooleanConverter);
 		private static readonly BufferedProperty<bool> _dbWriterItemInfoIdResource = new BufferedProperty<bool>(ConfigAsker, "[Server database editor - Db Writer - ItemInfo id resource]", true, FormatConverters.BooleanConverter);

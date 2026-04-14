@@ -80,7 +80,7 @@
                     </Grid>
                 </StackPanel>
             </Grid>
-            <Grid ListView:WpfUtils.IsDraggable="True" Grid.Row="1" Height="49" Background="{DynamicResource UIDialogBackground}">
+            <Grid TokeiLibrary:WpfProperties.IsDraggable="True" Grid.Row="1" Height="49" Background="{DynamicResource UIDialogBackground}">
                 <DockPanel HorizontalAlignment="Right" Margin="0 0 3 0">
                     <Button Name="_buttonApply" Click="_buttonApply_Click" Content="Apply" Height="25" Margin="3" MinWidth="100" />
                     <Button Name="_buttonOk" Click="_buttonOk_Click" Content="Ok" Height="25" Margin="3" MinWidth="100" />

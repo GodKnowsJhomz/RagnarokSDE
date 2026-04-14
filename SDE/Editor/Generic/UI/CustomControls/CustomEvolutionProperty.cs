@@ -76,7 +76,7 @@ namespace SDE.Editor.Generic.UI.CustomControls {
 
 			_lv = new RangeListView();
 			_lv.SetValue(TextSearch.TextPathProperty, "ID");
-			_lv.SetValue(WpfUtils.IsGridSortableProperty, true);
+			_lv.SetValue(ListViewExtensions.IsGridSortableProperty, true);
 			_lv.SetValue(ScrollViewer.HorizontalScrollBarVisibilityProperty, ScrollBarVisibility.Disabled);
 			_lv.SetValue(Grid.RowProperty, _row);
 			_lv.FocusVisualStyle = null;
@@ -181,7 +181,7 @@ namespace SDE.Editor.Generic.UI.CustomControls {
 
 			_lvRequirements = new RangeListView();
 			_lvRequirements.SetValue(TextSearch.TextPathProperty, "ID");
-			_lvRequirements.SetValue(WpfUtils.IsGridSortableProperty, true);
+			_lvRequirements.SetValue(ListViewExtensions.IsGridSortableProperty, true);
 			_lvRequirements.SetValue(ScrollViewer.HorizontalScrollBarVisibilityProperty, ScrollBarVisibility.Disabled);
 			_lvRequirements.SetValue(Grid.RowProperty, _row);
 			_lvRequirements.SetValue(Grid.ColumnProperty, 1);
@@ -891,8 +891,8 @@ namespace SDE.Editor.Generic.UI.CustomControls {
 									byte[] data = SdeEditor.Instance.ProjectDatabase.MetaGrf.GetData(EncodingService.FromAnyToDisplayEncoding(@"data\texture\À¯ÀúÀÎÅÍÆäÀÌ½º\item\" + entry.GetValue<string>(ClientItemAttributes.IdentifiedResourceName.Index).ExpandString() + ".bmp"));
 
 									if (data != null) {
-										GrfImage gimage = new GrfImage(ref data);
-										gimage.MakePinkTransparent();
+										GrfImage gimage = new GrfImage(data);
+										gimage.MakePinkShadeTransparent();
 
 										if (gimage.GrfImageType == GrfImageType.Bgr24) {
 											gimage.Convert(GrfImageType.Bgra32);

@@ -197,7 +197,14 @@ namespace SDE.View
         }
         private void _menuItemAbout_Click(object sender, RoutedEventArgs e)
         {
-            WindowProvider.ShowWindow(new AboutDialog(SdeAppConfiguration.PublicVersion, SdeAppConfiguration.RealVersion, SdeAppConfiguration.Author, SdeAppConfiguration.ProgramName, "sdeAboutBackground.jpg"), this);
+            WindowProvider.ShowWindow(
+                new AboutDialog(
+                    SdeAppConfiguration.PublicVersion + " (" + SdeAppConfiguration.BuildBitness + ")", 
+                    SdeAppConfiguration.RealVersion, 
+                    SdeAppConfiguration.Author, 
+                    SdeAppConfiguration.ProgramName, 
+                    "sdeAboutBackground.jpg"), 
+                this);
         }
         private void _menuItemClose_Click(object sender, RoutedEventArgs e)
         {

@@ -61,6 +61,46 @@
   <PropertyGroup>
     <StartupObject>SDE.GRFEditorMain</StartupObject>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;SDE_DEBUG_</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;SDE_DEBUG_</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="ColorPicker">
       <HintPath>Files\ColorPicker.dll</HintPath>
@@ -76,14 +116,6 @@
     </Reference>
     <Reference Include="Ftp">
       <HintPath>Files\Ftp.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="GRF">
-      <HintPath>Files\GRF.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="GrfToWpfBridge">
-      <HintPath>Files\GrfToWpfBridge.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Hardcodet.NotifyIcon.Wpf">
@@ -106,10 +138,12 @@
       <HintPath>Files\Microsoft.Dynamic.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Microsoft.Scripting, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.Scripting">
+      <HintPath>Files\Microsoft.Scripting.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Microsoft.Scripting.Core, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.Scripting.Core">
+      <HintPath>Files\Microsoft.Scripting.Core.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Org.Mentalis.Security">
@@ -124,14 +158,6 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Tamir.SharpSSH">
       <HintPath>Files\Tamir.SharpSSH.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TokeiLibrary">
-      <HintPath>Files\TokeiLibrary.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Utilities">
-      <HintPath>Files\Utilities.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="WindowsBase" />
@@ -957,6 +983,28 @@
   <ItemGroup>
     <Resource Include="Resources\sword.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GrfToWpfBridge\GrfToWpfBridge.csproj">
+      <Project>{ec4e062e-a9a8-4c70-a91a-59c64bafd38a}</Project>
+      <Name>GrfToWpfBridge</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\GRF\GRF.csproj">
+      <Project>{2bf1c650-e4d0-c017-6d5f-d89d95c56847}</Project>
+      <Name>GRF</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\TokeiLibrary\TokeiLibrary.csproj">
+      <Project>{812355c7-a277-4e8c-b6a0-306310f8f183}</Project>
+      <Name>TokeiLibrary</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Utilities\Utilities.csproj">
+      <Project>{dd29bc01-3e6b-7e3c-8940-a61c0c42100c}</Project>
+      <Name>Utilities</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
@@ -967,6 +1015,29 @@
     <PreBuildEvent>
     </PreBuildEvent>
   </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedSyncDll Include="$(ProjectDir)..\Libraries\ActImaging.dll">
+      <TargetFileName>ActImaging.dll</TargetFileName>
+    </EmbeddedSyncDll>
+    <EmbeddedSyncDll Include="$(ProjectDir)..\Libraries\GRF.dll">
+      <TargetFileName>GRF.dll</TargetFileName>
+    </EmbeddedSyncDll>
+    <EmbeddedSyncDll Include="$(ProjectDir)..\Libraries\GrfToWpfBridge.dll">
+      <TargetFileName>GrfToWpfBridge.dll</TargetFileName>
+    </EmbeddedSyncDll>
+    <EmbeddedSyncDll Include="$(ProjectDir)..\Libraries\TokeiLibrary.dll">
+      <TargetFileName>TokeiLibrary.dll</TargetFileName>
+    </EmbeddedSyncDll>
+    <EmbeddedSyncDll Include="$(ProjectDir)..\Libraries\Utilities.dll">
+      <TargetFileName>Utilities.dll</TargetFileName>
+    </EmbeddedSyncDll>
+  </ItemGroup>
+  <Target Name="SyncEmbeddedDependencyDlls" BeforeTargets="CoreCompile" Condition="Exists('$(ProjectDir)Files\_Compress.bat')">
+    <MakeDir Directories="$(ProjectDir)Files" />
+    <MakeDir Directories="$(ProjectDir)Files\Compressed" />
+    <Copy SourceFiles="@(EmbeddedSyncDll)" DestinationFiles="@(EmbeddedSyncDll->'$(ProjectDir)Files\%(TargetFileName)')" SkipUnchangedFiles="false" />
+    <Exec WorkingDirectory="$(ProjectDir)Files" Command="cmd /c &quot;_Compress.bat&quot;" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

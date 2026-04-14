@@ -22,7 +22,7 @@ namespace SDE.View.Controls {
 			var imageData = ApplicationManager.GetResource("numbers.bmp");
 			_imgNumbers = new GrfImage(imageData);
 			_imgNumbers.Convert(GrfImageType.Bgra32);
-			_imgNumbers.MakePinkTransparent();
+			_imgNumbers.MakePinkShadeTransparent();
 		}
 		
 		public ShopItem() {
@@ -180,7 +180,12 @@ namespace SDE.View.Controls {
 			imgSource.SetPixelsUnrestricted(x, 0, _getElement(elementIndex, color));
 		}
 
-		private GrfImage _setColor(GrfImage img, GrfColor color) {
+        private GrfImage _setColor(GrfImage img, string color)
+        {
+            return _setColor(img, new GrfColor(color));
+        }
+
+        private GrfImage _setColor(GrfImage img, GrfColor color) {
 			for (int i = 0; i < img.Pixels.Length; i += 4) {
 				if (img.Pixels[i + 3] != 0) {
 					img.Pixels[i + 0] = color.B;
@@ -214,7 +219,7 @@ namespace SDE.View.Controls {
 			if (image == null)
 				return;
 
-			image.MakePinkTransparent();
+			image.MakePinkShadeTransparent();
 			image.Convert(GrfImageType.Bgra32);
 
 			//GrfImage icon = new GrfImage(ApplicationManager.GetResource("shop_back.bmp"));

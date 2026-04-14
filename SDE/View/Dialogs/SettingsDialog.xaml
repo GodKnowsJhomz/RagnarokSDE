@@ -366,7 +366,7 @@
                 </TabControl>
             </Grid>
         </Border>
-        <Grid ListView:WpfUtils.IsDraggable="True" Grid.Row="2" Height="40" Background="{DynamicResource UIDialogBackground}">
+        <Grid TokeiLibrary:WpfProperties.IsDraggable="True" Grid.Row="2" Height="40" Background="{DynamicResource UIDialogBackground}">
             <DockPanel HorizontalAlignment="Right" Margin="0 0 3 0">
                 <Button Content="Ok" Height="25" Margin="3" Width="100" Click="_buttonClose" />
             </DockPanel>

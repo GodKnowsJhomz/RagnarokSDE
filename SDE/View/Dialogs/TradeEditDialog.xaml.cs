@@ -1,14 +1,15 @@
-﻿using System;
+﻿using ErrorManager;
+using SDE.ApplicationConfiguration;
+using SDE.Editor.Engines;
+using SDE.Editor.Generic;
+using SDE.Editor.Generic.Lists;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using ErrorManager;
-using SDE.ApplicationConfiguration;
-using SDE.Editor.Engines;
-using SDE.Editor.Generic;
-using SDE.Editor.Generic.Lists;
+using TokeiLibrary;
 using TokeiLibrary.WPF.Styles;
 using TokeiLibrary.WPF.Styles.ListView;
 using Utilities;
@@ -101,7 +102,7 @@ namespace SDE.View.Dialogs {
 			cb.Checked += (e, a) => _update();
 			cb.Unchecked += (e, a) => _update();
 
-			WpfUtils.AddMouseInOutEffectsBox(cb);
+            WpfUtilities.AddMouseInOutUnderline(cb);
 			_eventId++;
 		}
 

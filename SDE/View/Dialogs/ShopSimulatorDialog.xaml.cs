@@ -103,7 +103,7 @@ namespace SDE.View.Dialogs {
 			_shop.TextChanged += new EventHandler(_shop_TextChanged);
 
 			AvalonLoader.Load(_shop);
-			WpfUtils.AddMouseInOutEffectsBox(_cbColorZeny, _cbDiscount, _cbUseViewId);
+            WpfUtilities.AddMouseInOutUnderline(_cbColorZeny, _cbDiscount, _cbUseViewId);
 
 			_helper = new PreviewHelper(new RangeListView(), SdeEditor.Instance.ProjectDatabase.GetDb<int>(ServerDbs.Items), null, null, null, null);
 

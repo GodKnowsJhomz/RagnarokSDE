@@ -25,7 +25,7 @@
                 <StackPanel Name="_spAcc" Margin="0 0 0 5" />
             </StackPanel>
         </Grid>
-        <Grid Grid.Row="1" ListView:WpfUtils.IsDraggable="True" Height="49" Background="{DynamicResource UIDialogBackground}">
+        <Grid Grid.Row="1" TokeiLibrary:WpfProperties.IsDraggable="True" Height="49" Background="{DynamicResource UIDialogBackground}">
             <DockPanel HorizontalAlignment="Right" Margin="0 0 3 0">
                 <Button Name="_buttonOk" Click="_buttonOk_Click" Content="Ok" Height="25" Margin="3" MinWidth="100" Grid.Column="2" />
                 <Button Name="_buttonCancel" Click="_buttonCancel_Click" Content="Cancel" Height="25" Margin="3" MinWidth="100" />

@@ -132,7 +132,7 @@ namespace SDE.Editor.Generic.UI.CustomControls
 
             _image.MouseLeftButtonUp += new MouseButtonEventHandler(_image_MouseLeftButtonUp);
 
-            WpfUtils.AddMouseInOutEffects(image);
+            WpfUtilities.AddMouseInOutHandEffect(image);
 
             grid.Children.Add(_imageResource);
             grid.Children.Add(_textBox);
@@ -228,7 +228,7 @@ namespace SDE.Editor.Generic.UI.CustomControls
                         _textBox.Dispatch(p => p.Background = Application.Current.Resources["GSearchEngineOk"] as Brush);
 
                         _wrapper1.Image = ImageProvider.GetImage(data, _ext);
-                        _wrapper1.Image.MakePinkTransparent();
+                        _wrapper1.Image.MakePinkShadeTransparent();
 
                         if (_wrapper1.Image.GrfImageType == GrfImageType.Bgr24)
                         {
@@ -259,7 +259,7 @@ namespace SDE.Editor.Generic.UI.CustomControls
                     if (data2 != null)
                     {
                         _wrapper2.Image = ImageProvider.GetImage(data2, _ext);
-                        _wrapper2.Image.MakePinkTransparent();
+                        _wrapper2.Image.MakePinkShadeTransparent();
                         _imagePreview.Tag = _textBox.Text;
                         _imagePreview.Source = _wrapper2.Image.Cast<BitmapSource>();
                         //_imagePreview.Source.Freeze();

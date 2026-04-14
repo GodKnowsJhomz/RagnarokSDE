@@ -113,7 +113,7 @@
                             <Styles:FancyButton x:Name="_buttonRawView" Click="_buttonRawView_Click" Grid.Row="0" Grid.Column="0" Height="43" TextHeader="Raw view" TextDescription="Show the raw view" Margin="2" HorizontalAlignment="Left" VerticalAlignment="Top" />
                             <!--<WPF:FancyButton Margin="3" Click="_buttonFixAll_Click" x:Name="_buttonFixAll" TextHeader="Fix all" TextDescription="Fix all items" HorizontalAlignment="Left" />-->
                         </WrapPanel>
-                        <ListView TextSearch.TextPath="Id" ListView:WpfUtils.IsGridSortable="True" VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.HorizontalScrollBarVisibility="Disabled" PreviewMouseRightButtonUp="_listViewResults_PreviewMouseRightButtonUp"  Name="_listViewResults" BorderThickness="0" Grid.Row="2" />
+                        <ListView TextSearch.TextPath="Id" ListView:ListViewExtensions.IsGridSortable="True" VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.HorizontalScrollBarVisibility="Disabled" PreviewMouseRightButtonUp="_listViewResults_PreviewMouseRightButtonUp"  Name="_listViewResults" BorderThickness="0" Grid.Row="2" />
                         <TextBox BorderThickness="0" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" Name="_tbResults" IsReadOnly="True" Grid.Row="2" AcceptsTab="True" />
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -125,7 +125,7 @@
                 </TabItem>
             </TabControl>
         </Border>
-        <Grid ListView:WpfUtils.IsDraggable="True" Grid.Row="1" Height="40" Background="{DynamicResource UIDialogBackground}">
+        <Grid TokeiLibrary:WpfProperties.IsDraggable="True" Grid.Row="1" Height="40" Background="{DynamicResource UIDialogBackground}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="300" />

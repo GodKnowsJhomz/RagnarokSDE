@@ -200,7 +200,7 @@ namespace SDE.Editor.Generic.UI.CustomControls {
 
 			_lv = new RangeListView();
 			_lv.SetValue(TextSearch.TextPathProperty, "ID");
-			_lv.SetValue(WpfUtils.IsGridSortableProperty, true);
+			_lv.SetValue(ListViewExtensions.IsGridSortableProperty, true);
 			_lv.SetValue(ScrollViewer.HorizontalScrollBarVisibilityProperty, ScrollBarVisibility.Disabled);
 			_lv.SetValue(Grid.RowProperty, _row);
 			_lv.FocusVisualStyle = null;

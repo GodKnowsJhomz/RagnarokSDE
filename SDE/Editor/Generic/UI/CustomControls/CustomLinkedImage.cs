@@ -109,7 +109,7 @@ namespace SDE.Editor.Generic.UI.CustomControls {
 
 							if (image != null) {
 								_wrapper.Image = image;
-								_wrapper.Image.MakePinkTransparent();
+								_wrapper.Image.MakePinkShadeTransparent();
 								_wrapper.Image.MakeFirstPixelTransparent();
 
 								_image.BeginDispatch(delegate {
@@ -128,7 +128,7 @@ namespace SDE.Editor.Generic.UI.CustomControls {
 					}
 					else {
 						_wrapper.Image = ImageProvider.GetImage(data, _ext);
-						_wrapper.Image.MakePinkTransparent();
+						_wrapper.Image.MakePinkShadeTransparent();
 						_wrapper.Image.MakeFirstPixelTransparent();
 
 						_image.BeginDispatch(delegate {

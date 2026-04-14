@@ -203,18 +203,20 @@ namespace SDE.Editor.Generic.TabsMakerCore {
 		}
 
 		public static void RemoveUndoAndRedoEvents(FrameworkElement box, GDbTabWrapper<TKey, TValue> tab) {
-			box.PreviewKeyDown += delegate(object sender, KeyEventArgs args) {
-				if (ApplicationShortcut.Is(ApplicationShortcut.UndoGlobal)) {
+            var undoGlobal = ApplicationShortcut.FromString("Ctrl-Alt-Z", "Application.UndoGlobal");
+            var redoGlobal = ApplicationShortcut.FromString("Ctrl-Alt-Y", "Application.RedoGlobal");
+            box.PreviewKeyDown += delegate(object sender, KeyEventArgs args) {
+				if (undoGlobal.IsMatch()) {
 					tab.Undo();
 					args.Handled = true;
 				}
 
-				if (ApplicationShortcut.Is(ApplicationShortcut.RedoGlobal)) {
+				if (redoGlobal.IsMatch()) {
 					tab.Redo();
 					args.Handled = true;
 				}
 
-				if (ApplicationShortcut.Is(ApplicationShortcut.Undo)) {
+				if (ApplicationShortcut.Undo.IsMatch()) {
 					TextBox tBox = box as TextBox;
 					TextEditor eBox = box as TextEditor;
 
@@ -241,7 +243,7 @@ namespace SDE.Editor.Generic.TabsMakerCore {
 					args.Handled = true;
 				}
 
-				if (ApplicationShortcut.Is(ApplicationShortcut.Redo)) {
+				if (ApplicationShortcut.Redo.IsMatch()) {
 					TextBox tBox = box as TextBox;
 					TextEditor eBox = box as TextEditor;
 

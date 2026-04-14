@@ -56,10 +56,10 @@ namespace SDE.View.Dialogs {
 			Binder.Bind(_tbNameInput, () => SdeAppConfiguration.CmdCopyToNameFormatInput);
 			Binder.Bind(_tbNameOutput, () => SdeAppConfiguration.CmdCopyToNameFormatOutput);
 
-			WpfUtils.AddMouseInOutEffectsBox(_cbName);
-			WpfUtils.AddMouseInOutEffectsBox(_cbAegisName);
-			WpfUtils.AddMouseInOutEffectsBox(_cbOverwrite);
-			WpfUtils.AddMouseInOutEffectsBox(_cbCopyClientItems);
+			WpfUtilities.AddMouseInOutUnderline(_cbName);
+			WpfUtilities.AddMouseInOutUnderline(_cbAegisName);
+			WpfUtilities.AddMouseInOutUnderline(_cbOverwrite);
+			WpfUtilities.AddMouseInOutUnderline(_cbCopyClientItems);
 
 			//ContextMenu menu = _createMenu(_tbAegisNameInput, _buttonAegisNameInput);
 		}

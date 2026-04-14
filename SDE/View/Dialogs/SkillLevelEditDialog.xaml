@@ -23,7 +23,7 @@
             </Grid.ColumnDefinitions>
             <Sliders:SliderColor VerticalAlignment="Center" Height="30" x:Name="_gpRate" Margin="4 6 4 6" />
         </Grid>
-        <Grid Name="_footerGrid" ListView:WpfUtils.IsDraggable="True" Grid.Row="1" Height="49" Background="{DynamicResource UIDialogBackground}">
+        <Grid Name="_footerGrid" TokeiLibrary:WpfProperties.IsDraggable="True" Grid.Row="1" Height="49" Background="{DynamicResource UIDialogBackground}">
             <DockPanel HorizontalAlignment="Right" Margin="0 0 3 0">
                 <Button Name="_buttonOk" Click="_buttonOk_Click" Content="Ok" Height="25" Margin="3" MinWidth="100" Grid.Column="2" />
                 <Button Name="_buttonCancel" Click="_buttonCancel_Click" Content="Cancel" Height="25" Margin="3" MinWidth="100" />

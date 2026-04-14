@@ -55,7 +55,7 @@ namespace SDE.Editor.Generic.TabsMakerCore
                 DisplayName = "Copy entries to clipboard",
                 ImagePath = "export.png",
                 InsertIndex = 3,
-                Shortcut = ApplicationShortcut.Copy,
+                Shortcut = ApplicationShortcut.Copy.Shortcut,
                 AddToCommandsStack = false,
                 GenericCommand = delegate (List<ReadableTuple<int>> items) {
                     StringBuilder builder = new StringBuilder();
@@ -75,7 +75,7 @@ namespace SDE.Editor.Generic.TabsMakerCore
                 AllowMultipleSelection = true,
                 DisplayName = "Copy entries to clipboard",
                 ImagePath = "export.png",
-                Shortcut = ApplicationShortcut.Copy,
+                Shortcut = ApplicationShortcut.Copy.Shortcut,
                 InsertIndex = 3,
                 AddToCommandsStack = false,
                 GenericCommand = delegate (List<ReadableTuple<string>> items) {
@@ -647,7 +647,7 @@ namespace SDE.Editor.Generic.TabsMakerCore
                 DisplayName = "Copy entries to clipboard (conf)",
                 ImagePath = "export.png",
                 InsertIndex = 4,
-                Shortcut = ApplicationShortcut.Copy2,
+                Shortcut = new Shortcut(Key.C, ModifierKeys.Control | ModifierKeys.Shift),
                 AddToCommandsStack = false,
                 GenericCommand = delegate (List<ReadableTuple<TKey>> items) {
                     try
@@ -672,7 +672,7 @@ namespace SDE.Editor.Generic.TabsMakerCore
                 DisplayName = "Autocomplete (from Server data)",
                 ImagePath = "imconvert.png",
                 InsertIndex = 5,
-                Shortcut = ApplicationShortcut.FromString("Ctrl-G", "Autocomplete"),
+                Shortcut = ApplicationShortcut.FromString("Ctrl-G", "Autocomplete").Shortcut,
                 AddToCommandsStack = true,
                 Command = delegate (ReadableTuple<TKey> item) {
                     try
@@ -976,7 +976,7 @@ namespace SDE.Editor.Generic.TabsMakerCore
             });
 
             var select = GenerateSelectFrom(ServerDbs.Items, tab);
-            select.Shortcut = ApplicationShortcut.Select;
+            select.Shortcut = ApplicationShortcut.Select.Shortcut;
             settings.AddedCommands.Add(select);
 
             settings.SearchEngine.SetupImageDataGetter = delegate (ReadableTuple<TKey> tuple) {
@@ -987,8 +987,8 @@ namespace SDE.Editor.Generic.TabsMakerCore
 
                         if (data != null)
                         {
-                            GrfImage gimage = new GrfImage(ref data);
-                            gimage.MakePinkTransparent();
+                            GrfImage gimage = new GrfImage(data);
+                            gimage.MakePinkShadeTransparent();
 
                             if (gimage.GrfImageType == GrfImageType.Bgr24)
                             {

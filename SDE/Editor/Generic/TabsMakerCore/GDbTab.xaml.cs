@@ -19,14 +19,14 @@ namespace SDE.Editor.Generic.TabsMakerCore {
 		public GDbTab() {
 			InitializeComponent();
 
-			_miDelete.InputGestureText = ApplicationShortcut.FindDislayName(ApplicationShortcut.Delete);
-			_miChangeId.InputGestureText = ApplicationShortcut.FindDislayName(ApplicationShortcut.Change);
-			_miCopyTo.InputGestureText = ApplicationShortcut.FindDislayName(ApplicationShortcut.CopyTo);
-			_miCut.InputGestureText = ApplicationShortcut.FindDislayName(ApplicationShortcut.Cut);
-			_miShowSelected.InputGestureText = ApplicationShortcut.FindDislayName(ApplicationShortcut.Restrict);
-			_miSelectInNotepad.InputGestureText = ApplicationShortcut.FindDislayName(ApplicationShortcut.FromString("Ctrl-W", "Open in Notepad++"));
-			//_miChangeId.InputGestureText = ApplicationShortcut.FindDislayName(ApplicationShortcut.);
-		}
+			_miDelete.InputGestureText = ApplicationShortcut.Delete.InputGestureText;
+            _miChangeId.InputGestureText = ApplicationShortcut.Change.InputGestureText;
+            _miCopyTo.InputGestureText = ApplicationShortcut.FromString("Ctrl-Shift-D", "Copy to").InputGestureText;
+            _miCut.InputGestureText = ApplicationShortcut.Cut.InputGestureText;
+            _miShowSelected.InputGestureText = ApplicationShortcut.Restrict.InputGestureText;
+            _miSelectInNotepad.InputGestureText = ApplicationShortcut.FromString("Ctrl-W", "Open in Notepad++").InputGestureText;
+            //_miChangeId.InputGestureText = ApplicationShortcut.FindDislayName(ApplicationShortcut.);
+        }
 
 		public virtual DbAttribute DisplayAttribute {
 			get { throw new InvalidOperationException(); }

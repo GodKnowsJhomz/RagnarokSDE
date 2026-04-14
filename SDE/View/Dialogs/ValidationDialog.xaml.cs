@@ -95,9 +95,9 @@ namespace SDE.View.Dialogs {
 
 		private void _addSelectAll(Grid grid, CheckBox selectAll) {
 			List<CheckBox> boxes = DisplayablePropertyHelper.FindAll<CheckBox>(grid);
-			boxes.ForEach(WpfUtils.AddMouseInOutEffectsBox);
+			boxes.ForEach(WpfUtilities.AddMouseInOutUnderline);
 			bool eventsActive = true;
-			WpfUtils.AddMouseInOutEffectsBox(selectAll);
+			WpfUtilities.AddMouseInOutUnderline(selectAll);
 
 			foreach (var box in boxes) {
 				box.Checked += delegate {

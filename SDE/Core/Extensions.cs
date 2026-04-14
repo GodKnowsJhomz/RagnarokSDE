@@ -70,7 +70,7 @@ namespace SDE.Core {
 			}
 
 			DefaultComparer<T> comparer = (DefaultComparer<T>)_defaultSearches[lv];
-			lv.Dispatch(p => comparer.SetOrder(WpfUtils.GetLastGetSearchAccessor(lv) ?? id, WpfUtils.GetLastSortDirection(lv)));
+			lv.Dispatch(p => comparer.SetOrder(ListViewExtensions.GetLastGetSearchAccessor(lv) ?? id, ListViewExtensions.GetLastSortDirection(lv)));
 			return comparer;
 		}
 

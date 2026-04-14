@@ -1,0 +1,118 @@
+﻿using System;
+using System.Collections.Generic;
+using GRF.Graphics;
+using GRF.Image;
+using Utilities;
+
+namespace GRF.FileFormats.ActFormat {
+	public class EffectConfiguration {
+		public static ConfigAsker ConfigAsker { get; set; }
+		public static Action<EffectConfiguration, Act, int> DisplayAction { get; set; }
+		public static int SkipAndRememberInput { get; set; }
+
+		public class EffectProperty {
+			public object Name { get; set; }
+			public object DefValue { get; set; }
+			public object MinValue { get; set; }
+			public object MaxValue { get; set; }
+			public object Value { get; set; }
+			public Type Type { get; set; }
+			public string SettingName { get; set; }
+			public string ToolTip { get; set; }
+		}
+
+		public Dictionary<string, EffectProperty> Properties = new Dictionary<string, EffectProperty>();
+		public bool Preview { get; set; }
+		public bool InvalidateSprite { get; set; }
+		public Action<Act> EffectFunc;
+		public static bool Displayed { get; set; }
+		public string ParentType { get; set; }
+		public bool ActIndexSelectorReadonly { get; set; }
+		public bool AutoPlay { get; set; }
+		public int PreferredSelectedAction { get; set; } = -1;
+
+		public EffectConfiguration(string parent) {
+			ParentType = parent;
+			AutoPlay = true;
+		}
+
+		public void AddProperty<T>(string name, T value, string toolTip = null) {
+			AddProperty(name, value, default(T), default(T), toolTip);
+		}
+
+		public void AddProperty<T>(string name, T defValue, T minValue, T maxValue, string toolTip = null) {
+			var property = new EffectProperty {
+				Name = name,
+				DefValue = defValue,
+				MinValue = minValue,
+				MaxValue = maxValue,
+				Type = typeof(T),
+				SettingName = "ActEditor - Effect - " + ParentType + " - " + name,
+				ToolTip = toolTip,
+			};
+
+			if (ConfigAsker.ContainsKey(property.SettingName)) {
+				try {
+					if (typeof(T) == typeof(GrfColor)) {
+						property.Value = new GrfColor(ConfigAsker[property.SettingName]);
+					}
+					else if (typeof(T) == typeof(float)) {
+						property.Value = FormatConverters.SingleConverter(ConfigAsker[property.SettingName]);
+					}
+					else if (typeof(T) == typeof(int)) {
+						property.Value = FormatConverters.IntConverter(ConfigAsker[property.SettingName]);
+					}
+					else if (typeof(T) == typeof(bool)) {
+						property.Value = Boolean.Parse(ConfigAsker[property.SettingName]);
+					}
+					else if (typeof(T) == typeof(string)) {
+						property.Value = ConfigAsker[property.SettingName];
+					}
+					else if (typeof(T) == typeof(TkVector2)) {
+						var data = ConfigAsker[property.SettingName].Trim('(', ')').Split(new string[] { ", " }, StringSplitOptions.RemoveEmptyEntries);
+						property.Value = new TkVector2(FormatConverters.SingleConverterNoThrow(data[0]), FormatConverters.SingleConverterNoThrow(data[1]));
+					}
+					else {
+						property.Value = defValue;
+					}
+				}
+				catch {
+					// Invalid data, probably from changing the type in the script; erase the entry.
+					ConfigAsker.DeleteKey(property.SettingName);
+					property.Value = defValue;
+				}
+			}
+			else {
+				property.Value = defValue;
+			}
+
+			Properties[name] = property;
+		}
+
+		public void SetToolTip(string name, string toolTip) {
+			if (!Properties.TryGetValue(name, out EffectProperty property))
+				return;
+
+			property.ToolTip = toolTip;
+		}
+
+		public void RemoveProperty(string name) {
+			Properties.Remove(name);
+		}
+
+		public T GetProperty<T>(string name) {
+			return (T)Properties[name].Value;
+		}
+
+		public void Apply(Action<Act> action) {
+			EffectFunc = action;
+		}
+
+		public void Display(Act act, int actionIndex) {
+			if (ConfigAsker == null || DisplayAction == null)
+				throw new Exception("The EffectConfiguration must set the ConfigAsker and DisplayAction static functions before usage.");
+
+			DisplayAction(this, act, actionIndex);
+		}
+	}
+}

@@ -172,11 +172,11 @@ namespace SDE.Core.Avalon {
 		}
 
 		private void _textEditor_KeyDown(object sender, KeyEventArgs e) {
-			if (ApplicationShortcut.Is(ApplicationShortcut.MoveLineUp)) {
+			if (new Shortcut(Key.Up, ModifierKeys.Control).IsMatch()) {
 				_move(true);
 				e.Handled = true;
 			}
-			else if (ApplicationShortcut.Is(ApplicationShortcut.MoveLineDown)) {
+			else if (new Shortcut(Key.Down, ModifierKeys.Control).IsMatch()) {
 				_move(false);
 				e.Handled = true;
 			}

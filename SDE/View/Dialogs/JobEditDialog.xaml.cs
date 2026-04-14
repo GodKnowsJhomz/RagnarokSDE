@@ -98,7 +98,7 @@ namespace SDE.View.Dialogs {
 			_cbSelectAll.Checked += (sender, e) => _selectAll(true);
 			_cbSelectAll.Unchecked += (sender, e) => _selectAll(false);
 
-			WpfUtils.AddMouseInOutEffectsBox(_cbRestrictClasses, _cbSelectAll);
+			WpfUtilities.AddMouseInOutUnderline(_cbRestrictClasses, _cbSelectAll);
 		}
 
 		private void _selectAll(bool v) {
@@ -199,7 +199,7 @@ namespace SDE.View.Dialogs {
 			}
 
 			foreach (var box in _boxes)
-				WpfUtils.AddMouseInOutEffectsBox(box);
+				WpfUtilities.AddMouseInOutUnderline(box);
 
 			_update();
 		}

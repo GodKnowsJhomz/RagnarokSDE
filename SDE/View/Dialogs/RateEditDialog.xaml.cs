@@ -1,10 +1,11 @@
-﻿using System;
+﻿using GrfToWpfBridge;
+using SDE.ApplicationConfiguration;
+using System;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using GrfToWpfBridge;
-using SDE.ApplicationConfiguration;
+using TokeiLibrary;
 using TokeiLibrary.WPF.Styles;
 using TokeiLibrary.WPF.Styles.ListView;
 using Utilities.Extension;
@@ -37,8 +38,8 @@ namespace SDE.View.Dialogs {
 				}
 			});
 
-			WpfUtils.AddMouseInOutEffectsBox(_cbInc1);
-			WpfUtils.AddMouseInOutEffectsBox(_cbInc5);
+            WpfUtilities.AddMouseInOutUnderline(_cbInc1);
+            WpfUtilities.AddMouseInOutUnderline(_cbInc5);
 
 			_gpRate.ValueChanged += new ColorPicker.Sliders.SliderGradient.GradientPickerEventHandler(_gpRate_ValueChanged);
 		}

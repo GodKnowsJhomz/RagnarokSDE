@@ -31,7 +31,7 @@ namespace SDE.View.Dialogs {
 			Binder.Bind(_cbMobTables, () => ProjectConfiguration.SyncMobTables, _updateMobTables, true);
 			Binder.Bind(_cbAccTables, () => ProjectConfiguration.HandleViewIds, _updateccTables, true);
 
-			WpfUtils.AddMouseInOutEffectsBox(_cbMobTables, _cbAccTables);
+			WpfUtilities.AddMouseInOutUnderline(_cbMobTables, _cbAccTables);
 			_database = database;
 
 			_oldPath1 = ProjectConfiguration.SyncMobId;

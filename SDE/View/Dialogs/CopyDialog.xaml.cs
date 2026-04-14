@@ -76,7 +76,7 @@ namespace SDE.View.Dialogs {
 							box.SetValue(Grid.RowProperty, index / _gridCopy.ColumnDefinitions.Count);
 							box.SetValue(Grid.ColumnProperty, index % _gridCopy.ColumnDefinitions.Count);
 							box.IsChecked = _cbSelectAll.IsChecked;
-							WpfUtils.AddMouseInOutEffectsBox(box);
+							WpfUtilities.AddMouseInOutUnderline(box);
 							_gridCopy.Children.Add(box);
 							_boxes.Add(box);
 							index++;

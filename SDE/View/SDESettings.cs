@@ -160,11 +160,12 @@ namespace SDE.View
                 _delayedReloadDatabase = true;
             }, true);
 
-            _metaGrfViewer.LoadResourceMethod = () => Methods.StringToList(ProjectConfiguration.SdeEditorResources);
+            _metaGrfViewer.LoadResourceMethod = () => Methods.StringToList(ProjectConfiguration.SdeEditorResources)
+                .Select(p => new MultiGrfPath(p)).ToList();
             _metaGrfViewer.LoadResourcesInfo();
 
-            WpfUtils.AddMouseInOutEffectsBox(_cbUseLuaFiles);
-            WpfUtils.AddMouseInOutEffectsBox(_cbClientDbSync);
+            WpfUtilities.AddMouseInOutUnderline(_cbUseLuaFiles);
+            WpfUtilities.AddMouseInOutUnderline(_cbClientDbSync);
 
             _loadEncoding();
             _loadTxtFiles();
@@ -360,7 +361,7 @@ namespace SDE.View
             }
         }
 
-        // _metaGrfViewer.Paths 관련 추가 메소드
+        /* / _metaGrfViewer.Paths 관련 추가 메소드
         private static List<MultiGrfPath> _toMultiGrfPaths(List<TkPath> paths)
         {
             var result = new List<MultiGrfPath>();
@@ -402,7 +403,7 @@ namespace SDE.View
 
             throw new InvalidOperationException("MultiGrfPath 생성자를 찾을 수 없습니다.");
         }
-        // _metaGrfViewer.Paths 추가 끝
+        // _metaGrfViewer.Paths 추가 끝  */
 
         private void _updateMetaGrf()
         {
@@ -410,7 +411,7 @@ namespace SDE.View
             {
                 _mainTabControl.Dispatch(p => p.IsEnabled = false);
                 Progress = -1;
-                _metaGrf.Update(_toMultiGrfPaths(_metaGrfViewer.Paths));
+                _metaGrf.Update(_metaGrfViewer.Paths);
                 
                 _delayedReloadDatabase = true;
 

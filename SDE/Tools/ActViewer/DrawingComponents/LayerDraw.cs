@@ -318,7 +318,7 @@ namespace SDE.Tools.ActViewer.DrawingComponents {
 			_image.SetValue(RenderOptions.BitmapScalingModeProperty, SdeAppConfiguration.ActEditorScalingMode);
 
 			img = img.Copy();
-			img.ApplyChannelColor(_layer.Color);
+			img.Multiply(_layer.Color);
 			_image.Source = img.Cast<BitmapSource>();
 			_image.VerticalAlignment = VerticalAlignment.Top;
 			_image.HorizontalAlignment = HorizontalAlignment.Left;

@@ -180,9 +180,9 @@ namespace SDE.Editor.Generic.TabsMakerCore {
 			};
 
 			ApplicationShortcut.Link(ApplicationShortcut.Paste, () => ImportFromFile("clipboard"), _listView);
-			ApplicationShortcut.Link(ApplicationShortcut.AdvancedPaste, () => ImportFromFile("clipboard", true), this);
-			ApplicationShortcut.Link(ApplicationShortcut.AdvancedPaste2, () => ImportFromFile("clipboard", true), this);
-			ApplicationShortcut.Link(ApplicationShortcut.Cut, () => _miCut_Click(null, null), _listView);
+            ApplicationShortcut.Link(ApplicationShortcut.FromString("Ctrl-Shift-V", "Paste2"), () => ImportFromFile("clipboard", true), this);
+            ApplicationShortcut.Link(ApplicationShortcut.FromString("Ctrl-B", "Paste3"), () => ImportFromFile("clipboard", true), this);
+            ApplicationShortcut.Link(ApplicationShortcut.Cut, () => _miCut_Click(null, null), _listView);
 			ApplicationShortcut.Link(ApplicationShortcut.FromString("F3", "Search next empty ID"), () => {
 				if (_listView.SelectedItems.Count > 0) {
 					ReadableTuple<int> item = (_listView.SelectedItems[_listView.SelectedItems.Count - 1]) as ReadableTuple<int>;
@@ -222,7 +222,7 @@ namespace SDE.Editor.Generic.TabsMakerCore {
 
 				if (!_isMenuDeployed) {
 					_initMenus();
-					WpfUtils.DisableContextMenuIfEmpty(_listView);
+                    ListViewExtensions.DisableContextMenuIfEmpty(_listView);
 					_listView.SelectionChanged += _listView_SelectionChanged;
 					_isMenuDeployed = true;
 				}
@@ -258,9 +258,11 @@ namespace SDE.Editor.Generic.TabsMakerCore {
 				item.Icon = image;
 
 				if (command.Shortcut != null) {
-					ApplicationShortcut.Link(command.Shortcut, () => _menuItem_Click(command), this);
-					item.InputGestureText = ApplicationShortcut.FindDislayName(command.Shortcut);
-				}
+                    //ApplicationShortcut.Link(new TkCommand(command.DisplayName, command.Shortcut), () => _menuItem_Click(command), this);
+                    var tkCommand = new TkCommand(command.DisplayName ?? "Command", command.Shortcut);
+                    ApplicationShortcut.Link(tkCommand, () => _menuItem_Click(command), this);
+                    item.InputGestureText = command.Shortcut.Name;
+                }
 
 				_listView.ContextMenu.Items.Insert(command.InsertIndex, item);
 			}
@@ -282,7 +284,7 @@ namespace SDE.Editor.Generic.TabsMakerCore {
 
 		private void _miCut_Click(object sender, RoutedEventArgs e) {
 			try {
-				ApplicationShortcut.Execute(ApplicationShortcut.Copy.KeyGesture, this);
+				ApplicationShortcut.Execute(ApplicationShortcut.Copy, this);
 				_deleteItems();
 			}
 			catch (Exception err) {

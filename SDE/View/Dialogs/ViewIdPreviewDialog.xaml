@@ -5,6 +5,7 @@
                  xmlns:ActViewer="clr-namespace:SDE.Tools.ActViewer" Width="303" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                  xmlns:WpfBugFix="clr-namespace:TokeiLibrary.WpfBugFix;assembly=TokeiLibrary"
                  xmlns:ListView="clr-namespace:TokeiLibrary.WPF.Styles.ListView;assembly=TokeiLibrary"
+                 xmlns:TokeiLibrary="clr-namespace:TokeiLibrary;assembly=TokeiLibrary"
                  d:DesignHeight="240"
                  Background="{StaticResource TabItemBackground}" Foreground="{StaticResource TextForeground}">
     <Grid>
@@ -27,12 +28,12 @@
             </WpfBugFix:RangeListView>
             <Border BorderThickness="0 1 0 0" BorderBrush="Black" Name="_gridSpriteMissing" Visibility="Collapsed" Grid.Row="1" Grid.ColumnSpan="2" MaxHeight="70">
                 <DockPanel>
-                    <Image ListView:WpfUtils.ImagePath="warning16.png" Height="16" Width="16" Margin="3" />
+                    <Image TokeiLibrary:WpfProperties.ImagePath="warning16.png" Height="16" Width="16" Margin="3" />
                     <TextBox BorderThickness="0" VerticalAlignment="Center" Name="_tbSpriteMissing" IsReadOnly="true" TextWrapping="Wrap" Text="Sprite missing!" VerticalScrollBarVisibility="Auto" />
                 </DockPanel>
             </Border>
         </Grid>
-        <!--<Grid ListView:WpfUtils.IsDraggable="True" Grid.Row="1" Height="49" Background="{DynamicResource UIDialogBackground}">
+        <!--<Grid TokeiLibrary:WpfProperties.IsDraggable="True" Grid.Row="1" Height="49" Background="{DynamicResource UIDialogBackground}">
             <Grid Margin="0 0 3 0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto" />

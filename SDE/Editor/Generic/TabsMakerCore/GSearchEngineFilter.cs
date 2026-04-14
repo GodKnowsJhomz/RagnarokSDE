@@ -97,7 +97,7 @@ namespace SDE.Editor.Generic.TabsMakerCore {
 						_searchFirstTimeSet = true;
 					}
 
-					_items.Dispatch(p => _entryComparer.SetSort(WpfUtils.GetLastGetSearchAccessor(_items), WpfUtils.GetLastSortDirection(_items)));
+					_items.Dispatch(p => _entryComparer.SetSort(ListViewExtensions.GetLastGetSearchAccessor(_items), ListViewExtensions.GetLastSortDirection(_items)));
 
 					if (_ignoreFilter) {
 						allItems = allItems.OrderBy(p => p, _entryComparer).ToList();

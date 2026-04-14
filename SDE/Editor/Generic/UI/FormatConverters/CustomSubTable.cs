@@ -112,7 +112,7 @@ namespace SDE.Editor.Generic.UI.FormatConverters {
 
 			_lv = new RangeListView();
 			_lv.SetValue(TextSearch.TextPathProperty, "ID");
-			_lv.SetValue(WpfUtils.IsGridSortableProperty, true);
+			_lv.SetValue(ListViewExtensions.IsGridSortableProperty, true);
 			_lv.SetValue(ScrollViewer.HorizontalScrollBarVisibilityProperty, ScrollBarVisibility.Disabled);
 			_lv.SetValue(Grid.RowProperty, 1);
 			_lv.Width = 334;

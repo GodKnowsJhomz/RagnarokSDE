@@ -39,7 +39,7 @@ namespace SDE.View.Dialogs {
 			Loaded += delegate {
 				_listView.Dispatch(p => p.ScrollToCenterOfView(_items.Last()));
 			};
-			WpfUtils.DisableContextMenuIfEmpty(_listView);
+            ListViewExtensions.DisableContextMenuIfEmpty(_listView);
 		}
 
 		private void _load() {

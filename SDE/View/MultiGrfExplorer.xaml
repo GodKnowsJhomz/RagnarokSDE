@@ -3,9 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:ListView="clr-namespace:TokeiLibrary.WPF.Styles.ListView;assembly=TokeiLibrary"
         xmlns:TokeiLibrary="clr-namespace:TokeiLibrary;assembly=TokeiLibrary"
-              xmlns:Styles="clr-namespace:TokeiLibrary.WPF.Styles;assembly=TokeiLibrary"
-                 xmlns:Application="clr-namespace:GrfToWpfBridge.Application;assembly=GrfToWpfBridge"
-                 Title="Meta GRF Explorer" Height="510" Width="610" Background="{StaticResource TabItemBackground}" Foreground="{StaticResource TextForeground}">
+        xmlns:Styles="clr-namespace:TokeiLibrary.WPF.Styles;assembly=TokeiLibrary"
+        xmlns:Application="clr-namespace:GrfToWpfBridge.Application;assembly=GrfToWpfBridge"
+        Title="Meta GRF Explorer" Height="510" Width="610" Background="{StaticResource TabItemBackground}" Foreground="{StaticResource TextForeground}">
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
@@ -33,7 +33,7 @@
                         <TextBox Name="_textBoxSearch"  Margin="3" TextChanged="_textBoxSearch_TextChanged" />
                     </DockPanel>
                     <ListView TextSearch.TextPath="DisplayFileName" Foreground="{StaticResource TextForeground}" AllowDrop="True" Grid.Row="2" Name="_items" SelectionChanged="_items_SelectionChanged"  SelectionMode="Extended"
-                     BorderThickness="0" ListView:WpfUtils.IsGridSortable="True" VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                     BorderThickness="0" ListView:ListViewExtensions.IsGridSortable="True" VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                     </ListView>
                 </Grid>
                 <GridSplitter Width="2" Grid.Column="1" HorizontalAlignment="Left" Background="{x:Static TokeiLibrary:Configuration.UIGridBackground}" />
@@ -58,7 +58,7 @@
                     </DockPanel>
                 </ScrollViewer>
             </Grid>
-            <Grid ListView:WpfUtils.IsDraggable="True" Grid.Row="1" Height="49" Background="{DynamicResource UIDialogBackground}">
+            <Grid TokeiLibrary:WpfProperties.IsDraggable="True" Grid.Row="1" Height="49" Background="{DynamicResource UIDialogBackground}">
                 <DockPanel HorizontalAlignment="Right" Margin="0 0 3 0">
                     <Button Name="_buttonSelect" Click="_buttonSelect_Click" Content="Select" Margin="3" Height="25" MinWidth="100" />
                     <Button Name="_buttonCancel" Click="_buttonCancel_Click" Content="Cancel" Margin="3" Height="25" MinWidth="100" />

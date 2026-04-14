@@ -143,9 +143,7 @@ namespace SDE.View.Controls
         {
             if (e.Data.GetData("GrfColor") != null)
             {
-                GrfColor color = e.Data.GetData("GrfColor") as GrfColor;
-
-                if (color != null)
+                if (e.Data.GetData("GrfColor") is GrfColor color)
                 {
                     InitialColor = Color.ToGrfColor();
                     _previewPanelBg.Fill = new SolidColorBrush(color.ToColor());

@@ -100,7 +100,7 @@ namespace SDE.View.Dialogs {
 					};
 
 					box.Tag = valuesEnum[index];
-					WpfUtils.AddMouseInOutEffectsBox(box);
+					WpfUtilities.AddMouseInOutUnderline(box);
 					_boxes.Add(box);
 					_upperGrid.Children.Add(box);
 					WpfUtilities.SetGridPosition(box, row, 2 * col);
@@ -180,7 +180,7 @@ namespace SDE.View.Dialogs {
 					};
 
 					box.Tag = valuesEnum[index];
-					WpfUtils.AddMouseInOutEffectsBox(box);
+					WpfUtilities.AddMouseInOutUnderline(box);
 					_boxes.Add(box);
 					_upperGrid.Children.Add(box);
 					WpfUtilities.SetGridPosition(box, row, 2 * col);

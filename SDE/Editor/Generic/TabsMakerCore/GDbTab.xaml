@@ -23,7 +23,7 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <controls:DbSearchPanel x:Name="_dbSearchPanel" />
-            <WpfBugFix:RangeListView Background="{StaticResource TabItemBackground}" TextSearch.TextPath="[0]" FocusVisualStyle="{x:Null}" BorderThickness="0" Grid.Row="1" ListView:WpfUtils.IsGridSortable="True" Name="_listView" VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <WpfBugFix:RangeListView Background="{StaticResource TabItemBackground}" TextSearch.TextPath="[0]" FocusVisualStyle="{x:Null}" BorderThickness="0" Grid.Row="1" ListView:ListViewExtensions.IsGridSortable="True" Name="_listView" VirtualizingStackPanel.IsVirtualizing="True" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <WpfBugFix:RangeListView.ContextMenu>
                     <ContextMenu>
                         <MenuItem Name="_miDelete" Header="Delete" >

@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" FocusVisualStyle="{x:Null}"
+             xmlns:TokeiLibrary="clr-namespace:TokeiLibrary;assembly=TokeiLibrary"
              xmlns:ListView="clr-namespace:TokeiLibrary.WPF.Styles.ListView;assembly=TokeiLibrary" mc:Ignorable="d">
     <Grid FocusVisualStyle="{x:Null}">
         <Grid Height="32" MinHeight="32" MaxHeight="32" Width="230" FocusVisualStyle="{x:Null}">
@@ -11,7 +12,7 @@
                 <ColumnDefinition Name="_middleWidth" />
                 <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
-            <Image Name="_imIcon2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" RenderOptions.BitmapScalingMode="NearestNeighbor" ListView:WpfUtils.ImagePath="shop_back.bmp" />
+            <Image Name="_imIcon2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" RenderOptions.BitmapScalingMode="NearestNeighbor" TokeiLibrary:WpfProperties.ImagePath="shop_back.bmp" />
             <Image Name="_imIcon" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" RenderOptions.BitmapScalingMode="NearestNeighbor" />
             <Image Name="_imPrice" Width="150" Grid.Column="2" HorizontalAlignment="Right" Margin="0 12 0 0" RenderOptions.BitmapScalingMode="NearestNeighbor" SnapsToDevicePixels="True" Stretch="Uniform" VerticalAlignment="Top" />
         </Grid>

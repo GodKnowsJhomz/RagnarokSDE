@@ -37,7 +37,7 @@
             <CheckBox TabIndex="2" Name="_tbStealProtected" Visibility="Collapsed" Grid.Column="1" Grid.Row="2" Margin="3 6 3 6" VerticalAlignment="Center" />
             <TextBox TabIndex="3" Name="_tbRandGroup" Visibility="Collapsed" Grid.Column="1" Grid.Row="3" Margin="3 6 3 6" VerticalAlignment="Center" />
         </Grid>
-        <Grid Grid.Row="1" ListView:WpfUtils.IsDraggable="True" Height="49" Background="{DynamicResource UIDialogBackground}">
+        <Grid Grid.Row="1" TokeiLibrary:WpfProperties.IsDraggable="True" Height="49" Background="{DynamicResource UIDialogBackground}">
             <DockPanel HorizontalAlignment="Right" Margin="0 0 3 0">
                 <Button Name="_buttonOk" Click="_buttonOk_Click" Content="Ok" Height="25" Margin="3" MinWidth="100" Grid.Column="2" />
                 <Button Name="_buttonCancel" Click="_buttonCancel_Click" Content="Cancel" Height="25" Margin="3" MinWidth="100" />

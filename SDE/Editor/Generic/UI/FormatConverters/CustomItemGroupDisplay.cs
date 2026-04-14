@@ -56,11 +56,11 @@ namespace SDE.Editor.Generic.UI.FormatConverters {
 			_lv.MouseDoubleClick += delegate { EditSelection(ServerItemGroupSubAttributes.Rate); };
 
 			MenuItem miSelect = new MenuItem { Header = "Select", Icon = new Image { Source = ApplicationManager.PreloadResourceImage("arrowdown.png") } };
-			MenuItem miCopy = new MenuItem { Header = "Copy to clipboard", Icon = new Image { Source = ApplicationManager.PreloadResourceImage("copy.png") }, InputGestureText = ApplicationShortcut.Copy.DisplayString };
-			MenuItem miPaste = new MenuItem { Header = "Paste from clipboard", Icon = new Image { Source = ApplicationManager.PreloadResourceImage("paste.png") }, InputGestureText = ApplicationShortcut.Paste.DisplayString };
+			MenuItem miCopy = new MenuItem { Header = "Copy to clipboard", Icon = new Image { Source = ApplicationManager.PreloadResourceImage("copy.png") }, InputGestureText = ApplicationShortcut.Copy.InputGestureText };
+			MenuItem miPaste = new MenuItem { Header = "Paste from clipboard", Icon = new Image { Source = ApplicationManager.PreloadResourceImage("paste.png") }, InputGestureText = ApplicationShortcut.Paste.InputGestureText };
 			MenuItem miEditDrop = new MenuItem { Header = "Edit", Icon = new Image { Source = ApplicationManager.PreloadResourceImage("properties.png") } };
-			MenuItem miRemoveDrop = new MenuItem { Header = "Remove", Icon = new Image { Source = ApplicationManager.PreloadResourceImage("delete.png") }, InputGestureText = ApplicationShortcut.Delete.DisplayString };
-			MenuItem miAddDrop = new MenuItem { Header = "Add", Icon = new Image { Source = ApplicationManager.PreloadResourceImage("add.png") }, InputGestureText = ApplicationShortcut.New.DisplayString };
+			MenuItem miRemoveDrop = new MenuItem { Header = "Remove", Icon = new Image { Source = ApplicationManager.PreloadResourceImage("delete.png") }, InputGestureText = ApplicationShortcut.Delete.InputGestureText };
+			MenuItem miAddDrop = new MenuItem { Header = "Add", Icon = new Image { Source = ApplicationManager.PreloadResourceImage("add.png") }, InputGestureText = ApplicationShortcut.New.InputGestureText };
 
 			_lv.ContextMenu.Items.Add(miSelect);
 			_lv.ContextMenu.Items.Add(miEditDrop);
