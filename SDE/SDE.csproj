@@ -223,6 +223,7 @@
     <Compile Include="Editor\Generic\Parsers\DbIOSkills.cs" />
     <Compile Include="Editor\Generic\UI\CustomControls\CustomEditableView.cs" />
     <Compile Include="Editor\Generic\UI\CustomControls\CustomEvolutionProperty.cs" />
+    <Compile Include="Editor\Generic\UI\CustomControls\CustomLinkedActImage.cs" />
     <Compile Include="Editor\Generic\UI\FormatConverters\CustomMobGroupDisplay.cs" />
     <Compile Include="Editor\Generic\UI\FormatConverters\CustomSubTable.cs" />
     <Compile Include="Editor\Items\MobGeneratorEngine.cs" />
@@ -984,6 +985,11 @@
     <Resource Include="Resources\sword.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ActImaging\ActImaging.csproj">
+      <Project>{2d16af7f-fd66-4d3b-ab6d-22c1cf73daed}</Project>
+      <Name>ActImaging</Name>
+      <Private>False</Private>
+    </ProjectReference>
     <ProjectReference Include="..\GrfToWpfBridge\GrfToWpfBridge.csproj">
       <Project>{ec4e062e-a9a8-4c70-a91a-59c64bafd38a}</Project>
       <Name>GrfToWpfBridge</Name>
@@ -1008,7 +1014,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" />
+      <UserProperties BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" />
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>

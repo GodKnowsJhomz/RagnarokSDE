@@ -1,4 +1,14 @@
-﻿using System;
+﻿using Database;
+using ErrorManager;
+using GRF.Core;
+using GRF.GrfSystem;
+using IronPython.Runtime.Operations;
+using SDE.Editor.Engines.DatabaseEngine;
+using SDE.Editor.Engines.TabNavigationEngine;
+using SDE.Editor.Generic.Core;
+using SDE.Editor.Generic.Lists;
+using SDE.Editor.Generic.TabsMakerCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
@@ -9,14 +19,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using Database;
-using ErrorManager;
-using GRF.GrfSystem;
-using SDE.Editor.Engines.DatabaseEngine;
-using SDE.Editor.Engines.TabNavigationEngine;
-using SDE.Editor.Generic.Core;
-using SDE.Editor.Generic.Lists;
-using SDE.Editor.Generic.TabsMakerCore;
 using TokeiLibrary;
 using TokeiLibrary.Shortcuts;
 using TokeiLibrary.WPF;
@@ -321,9 +323,16 @@ namespace SDE.Editor.Generic.UI.CustomControls {
 
 				if (_mobSkillDbTuple != null) {
 					int icondition = _mobSkillDbTuple.GetValue<int>(ServerMobSkillAttributes.ConditionType);
-					string condition = Enum.GetValues(typeof(ConditionType)).Cast<Enum>().Select(Description.GetDescription).ToList()[icondition];
+                    Array conditions = Enum.GetValues(typeof(ConditionType));
 
-					Condition = condition.
+                    string condition = "#Invalid ConditionType";
+
+                    if (icondition >= 0 && icondition < conditions.Length)
+                    {
+                        condition = Description.GetDescription((Enum)conditions.GetValue(icondition));
+                    }
+
+                    Condition = condition.
 						Replace("[CValue]", _mobSkillDbTuple.GetStringValue(ServerMobSkillAttributes.ConditionValue.Index)).
 						Replace("[Val1]", _mobSkillDbTuple.GetStringValue(ServerMobSkillAttributes.Val1.Index));
 

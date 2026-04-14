@@ -2108,7 +2108,7 @@ namespace SDE.Editor.Generic.UI.FormatConverters
             Grid.SetValue(Grid.ColumnSpanProperty, 3);
             _textBox.Loaded += delegate { _grid.IsEnabled = ProjectConfiguration.SynchronizeWithClientDatabases; };
 
-            var cli = new CustomLinkedImage<int, ReadableTuple<int>>(_textBox, @"data\sprite\¸ó½ºÅÍ\", ".spr", 0, 3, 1, 3);
+            var cli = new CustomLinkedActImage<int, ReadableTuple<int>>(_textBox, @"data\sprite\¸ó½ºÅÍ\", 0, 3, 1, 3);
             cli.Init(_tab, _tab.Settings.DisplayablePropertyMaker);
             _tab.AttachedProperty["CustomLinkedImage"] = cli;
             base._onInitalized();
@@ -2514,8 +2514,7 @@ namespace SDE.Editor.Generic.UI.FormatConverters
                 bool success = Int32.TryParse(_textBox.Text, out ival);
 
                 _textBox.Dispatch(p => p.Background = Application.Current.Resources["GSearchEngineProcessing"] as Brush);
-                var cli = _tab.AttachedProperty["CustomLinkedImage"] as CustomLinkedImage<int, ReadableTuple<int>>;
-
+                var cli = _tab.AttachedProperty["CustomLinkedImage"] as CustomLinkedActImage<int, ReadableTuple<int>>;
                 Int32.TryParse(_textBox.Text, out ival);
 
                 if (cli != null)
