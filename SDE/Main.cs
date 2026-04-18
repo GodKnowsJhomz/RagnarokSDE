@@ -6,6 +6,9 @@ using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Collections.Generic;
+using System.IO.Pipes;
+using System.Text;
+using System.Threading;
 
 namespace SDE
 {
@@ -13,6 +16,11 @@ namespace SDE
     {
         private static readonly Dictionary<string, Assembly> _assemblyCache = new Dictionary<string, Assembly>(StringComparer.OrdinalIgnoreCase);
         private static readonly object _assemblyCacheLock = new object();
+
+        //prevent execution of 2 processes
+        private static Mutex _singleInstanceMutex;
+        private const string MutexName = @"Local\RagnarokSDE_SingleInstance";
+        private const string PipeName = "RagnarokSDE_ShowMainWindow";
 
         private static readonly string[] _registeredAssemblies = new string[] {
             "ErrorManager",
@@ -43,6 +51,15 @@ namespace SDE
         [STAThread]
         public static void Main(string[] args)
         {
+            bool createdNew;
+            _singleInstanceMutex = new Mutex(true, MutexName, out createdNew);
+
+            if (!createdNew)
+            {
+                _notifyExistingInstance();
+                return;
+            }
+
             AppDomain.CurrentDomain.AssemblyResolve += (sender, arguments) => {
                 AssemblyName assemblyName = new AssemblyName(arguments.Name);
 
@@ -108,10 +125,46 @@ namespace SDE
 
             Directory.SetCurrentDirectory(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName));
 
-            var app = new App();
-            app.StartupUri = new Uri("View\\SdeEditor.xaml", UriKind.Relative);
-            //app.StartupUri = new Uri("WPF\\TestTabs.xaml", UriKind.Relative);
-            app.Run();
+            try
+            {
+                var app = new App();
+                app.StartupUri = new Uri("View\\SdeEditor.xaml", UriKind.Relative);
+                app.Run();
+            }
+            finally
+            {
+                if (_singleInstanceMutex != null)
+                {
+                    _singleInstanceMutex.ReleaseMutex();
+                    _singleInstanceMutex.Dispose();
+                    _singleInstanceMutex = null;
+                }
+            }
+        }
+
+        private static void _notifyExistingInstance()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                try
+                {
+                    using (var client = new NamedPipeClientStream(".", PipeName, PipeDirection.Out))
+                    {
+                        client.Connect(200);
+
+                        using (var writer = new StreamWriter(client, Encoding.UTF8))
+                        {
+                            writer.AutoFlush = true;
+                            writer.WriteLine("SHOW");
+                        }
+                    }
+                    return;
+                }
+                catch
+                {
+                    Thread.Sleep(100);
+                }
+            }
         }
 
         public static byte[] Decompress(byte[] data)

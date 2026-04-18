@@ -61,7 +61,7 @@ namespace SDE.ApplicationConfiguration {
 		#region Program's configuration and information
 
 		public static string PublicVersion {
-			get { return "1.3.2.0"; }
+			get { return "1.3.3.0"; }
 		}
 
 		public static string Author {

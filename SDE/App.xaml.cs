@@ -19,6 +19,10 @@ using Utilities;
 using Hardcodet.Wpf.TaskbarNotification;
 using SDE.View;
 using System.Windows.Controls;
+using System.IO.Pipes;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SDE
 {
@@ -28,6 +32,7 @@ namespace SDE
     public partial class App : Application
     {
         private TaskbarIcon _trayIcon;
+        private const string PipeName = "RagnarokSDE_ShowMainWindow";
 
         public App()
         {
@@ -173,6 +178,57 @@ namespace SDE
             }
         }
 
+        private void _showMainWindow()
+        {
+            for (int i = 0; i < 20; i++)
+            {
+                if (SdeEditor.Instance != null)
+                {
+                    Dispatcher.BeginInvoke(new Action(delegate
+                    {
+                        if (SdeEditor.Instance != null)
+                        {
+                            SdeEditor.Instance.RestoreFromTray();
+                        }
+                    }));
+
+                    return;
+                }
+
+                Thread.Sleep(100);
+            }
+        }
+
+        private void _startSingleInstanceServer()
+        {
+            Task.Factory.StartNew(delegate
+            {
+                while (true)
+                {
+                    try
+                    {
+                        using (var server = new NamedPipeServerStream(PipeName, PipeDirection.In))
+                        {
+                            server.WaitForConnection();
+
+                            using (var reader = new StreamReader(server, Encoding.UTF8))
+                            {
+                                string command = reader.ReadLine();
+
+                                if (command == "SHOW")
+                                {
+                                    _showMainWindow();
+                                }
+                            }
+                        }
+                    }
+                    catch
+                    {
+                    }
+                }
+            }, CancellationToken.None, TaskCreationOptions.LongRunning, TaskScheduler.Default);
+        }
+
         protected override void OnStartup(StartupEventArgs e)
         {
             ApplicationManager.CrashReportEnabled = true;
@@ -228,6 +284,7 @@ namespace SDE
                 _installTheme();
             }
 
+            _startSingleInstanceServer();
             base.OnStartup(e);
             _initializeTrayIcon();
         }
